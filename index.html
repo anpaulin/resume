@@ -1,7 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0;url=http://raw.githubusercontent.com/anpaulin/resume/master/ariel_paulin.pdf">
-</head>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Download</title>
+    <style>
+        /* Center the content in the body */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative; /* For positioning the download button */
+        }
 
+        /* Style for the image (Desktop view) */
+        img {
+            width: 65%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        /* Style for the download button */
+        .download-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .download-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Mobile view adjustments (under 600px) */
+        @media (max-width: 600px) {
+            /* Adjust image to take full width of screen */
+            img {
+                width: 100%;
+                max-width: 100%;
+                object-fit: contain; /* Keeps aspect ratio */
+            }
+
+            /* Style for the download button */
+            .download-button {
+                padding: 12px 25px;
+                font-size: 18px;
+                position: absolute; /* Keeps button fixed at the top-right corner */
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- The download button -->
+<a href="https://raw.githubusercontent.com/anpaulin/resume/master/ariel_paulin.pdf" download>
+    <button class="download-button">Download Resume</button>
+</a>
+
+<!-- The PNG image -->
+<img src="https://raw.githubusercontent.com/anpaulin/resume/master/ariel_paulin.png" alt="Ariel Paulin">
+
+</body>
+</html>
