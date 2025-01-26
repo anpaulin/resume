@@ -18,7 +18,14 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
+\usepackage{lmodern}
 \input{glyphtounicode}
+
+% Include xcolor for color definitions
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Define the awesome-skyblue color
+\definecolor{awesome-skyblue}{HTML}{0395DE}
 
 
 %----------FONT OPTIONS----------
@@ -52,10 +59,14 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
+\renewcommand{\sfdefault}{lmss}
+
 % Sections formatting
+% Section title formatting for modern look
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{0pt}]
+  \vspace{-4pt}\sffamily\bfseries\raggedright\fontsize{14}{16}\selectfont\color{awesome-skyblue}
+}{}{0em}{}[\vspace{-2pt}\color{awesome-skyblue}\titlerule]
+
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -72,7 +83,7 @@
   \vspace{-3pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & {\small \textbf{#2}} \\
-      \textit{\fontsize{10}{11}\selectfont #3} & \textit{\fontsize{8}{10}\selectfont #4} \\  % Custom size for date and location
+      \textit{\fontsize{10}{11}\selectfont #3} & \textit{\fontsize{8}{10}\selectfont \textcolor{awesome-skyblue}{#4}} \\  % Custom size and color for location
     \end{tabular*}\vspace{-1pt}
 }
 
@@ -125,7 +136,7 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Scala, Java, Python, SQL, JavaScript, C\#, C++, C, Assembly (ARM)} \\
-     \textbf{Technologies}{:Akka, Spark, Kafka, Flink, Play Framework, React, Node.js} \\
+     \textbf{Technologies}{: Akka, Spark, Kafka, Flink, Play Framework, React, Node.js} \\
      \textbf{Developer Tools}{: Git, IntelliJ, Eclipse, AWS, Azure, Docker, Jenkins}
     }}
  \end{itemize}
@@ -214,7 +225,7 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {University of Waterloo}{Waterloo, Ontario}
-      {BASc. Computer Engineering}{Sep. 2013 -- Apr 2018}
+      {BASc. Computer Engineering}{Sep 2013 -- Apr 2018}
   \resumeSubHeadingListEnd
 
 
