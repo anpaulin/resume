@@ -3,3 +3,4 @@
 .DS_Store
 *.aux
 *.out
+job_tracker/
