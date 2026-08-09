@@ -147,12 +147,17 @@ def parse_resume():
 
             start_date, end_date = dates.split('–') if '–' in dates else (dates, "")
 
+            bullets = []
+            for b_match in re.finditer(r'\\resumeItem\{([^}]+)\}', match.group(5) if len(match.groups()) >= 5 else ""):
+                bullets.append(clean_latex(b_match.group(1)))
+
             education.append({
                 "institution": inst,
                 "degree": degree,
                 "location": loc,
                 "start": start_date.strip(),
-                "end": end_date.strip()
+                "end": end_date.strip(),
+                "bullets": bullets
             })
 
     data = {
@@ -229,6 +234,8 @@ def generate_txt(data):
         spaces = max(2, 80 - len(header_left) - len(header_right))
         lines.append(f"{header_left}{' ' * spaces}{header_right}")
         lines.append(edu["location"])
+        for b in edu.get("bullets", []):
+            lines.append(f"  • {b}")
 
     return "\n".join(lines) + "\n"
 
