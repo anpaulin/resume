@@ -352,6 +352,26 @@ function playPowerUp() {
     } catch (e) {}
 }
 
+function playGameOverSound() {
+    if (!audioCtx) return;
+    try {
+        const now = audioCtx.currentTime;
+        const notes = [440, 349.23, 293.66, 220];
+        notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+            gain.gain.setValueAtTime(0.25, now + idx * 0.12);
+            gain.gain.linearRampToValueAtTime(0.01, now + (idx + 1) * 0.12);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.12);
+            osc.stop(now + (idx + 1) * 0.12);
+        });
+    } catch (e) {}
+}
+
 // --- Konami Code Detector ---
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIdx = 0;
@@ -399,6 +419,7 @@ const TECH_STACK = [
 ];
 
 let gameActive = false;
+let isGameOver = false;
 let animId = null;
 let score = 0;
 let wave = 1;
@@ -433,6 +454,7 @@ function startSpaceInvaders() {
     initAudio();
     playPowerUp();
     gameActive = true;
+    isGameOver = false;
     overlay.style.display = 'block';
     resizeCanvas();
     score = 0;
@@ -452,8 +474,30 @@ function startSpaceInvaders() {
     gameLoop();
 }
 
+function restartGame() {
+    isGameOver = false;
+    score = 0;
+    wave = 1;
+    scoreEl.textContent = score;
+    waveEl.textContent = wave;
+    player.x = canvas.width / 2 - player.w / 2;
+    bullets = [];
+    particles = [];
+    spawnInvaders();
+    playPowerUp();
+}
+
+function triggerGameOver() {
+    if (isGameOver) return;
+    isGameOver = true;
+    playGameOverSound();
+    // Create explosion at player position
+    createExplosion(player.x + player.w / 2, player.y + player.h / 2, '#00ffcc');
+}
+
 function stopSpaceInvaders() {
     gameActive = false;
+    isGameOver = false;
     overlay.style.display = 'none';
     if (animId) cancelAnimationFrame(animId);
     window.removeEventListener('resize', resizeCanvas);
@@ -463,8 +507,19 @@ function stopSpaceInvaders() {
 
 exitBtn.addEventListener('click', stopSpaceInvaders);
 
+// Canvas Click for Restart on Game Over
+canvas.addEventListener('click', () => {
+    if (isGameOver) restartGame();
+});
+
 function handleGameKeyDown(e) {
     if (e.key === 'Escape') stopSpaceInvaders();
+    if (isGameOver) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'r' || e.key === 'R') {
+            restartGame();
+        }
+        return;
+    }
     keys[e.key] = true;
     if (e.key === ' ' || e.key === 'ArrowUp') {
         shootLaser();
@@ -481,9 +536,24 @@ const mRight = document.getElementById('m-right');
 const mFire = document.getElementById('m-fire');
 
 ['touchstart', 'mousedown'].forEach(evt => {
-    mLeft.addEventListener(evt, (e) => { e.preventDefault(); keys['ArrowLeft'] = true; });
-    mRight.addEventListener(evt, (e) => { e.preventDefault(); keys['ArrowRight'] = true; });
-    mFire.addEventListener(evt, (e) => { e.preventDefault(); shootLaser(); });
+    mLeft.addEventListener(evt, (e) => {
+        e.preventDefault();
+        if (isGameOver) return;
+        keys['ArrowLeft'] = true;
+    });
+    mRight.addEventListener(evt, (e) => {
+        e.preventDefault();
+        if (isGameOver) return;
+        keys['ArrowRight'] = true;
+    });
+    mFire.addEventListener(evt, (e) => {
+        e.preventDefault();
+        if (isGameOver) {
+            restartGame();
+        } else {
+            shootLaser();
+        }
+    });
 });
 
 ['touchend', 'mouseup'].forEach(evt => {
@@ -516,13 +586,13 @@ function spawnInvaders() {
         }
     }
     invaderDirection = 1;
-    // Each wave speeds up progressively!
     baseInvaderSpeed = 1.0 + (wave - 1) * 0.75;
     currentInvaderSpeed = baseInvaderSpeed;
-    waveBannerTimer = 90; // Frame count for banner (~1.5s)
+    waveBannerTimer = 90;
 }
 
 function shootLaser() {
+    if (isGameOver) return;
     const now = Date.now();
     if (now - lastShot < 180) return;
     lastShot = now;
@@ -537,14 +607,14 @@ function shootLaser() {
 }
 
 function createExplosion(x, y, color) {
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 20; i++) {
         particles.push({
             x: x,
             y: y,
-            vx: (Math.random() - 0.5) * 8,
-            vy: (Math.random() - 0.5) * 8,
+            vx: (Math.random() - 0.5) * 10,
+            vy: (Math.random() - 0.5) * 10,
             life: 1,
-            decay: 0.03 + Math.random() * 0.03,
+            decay: 0.02 + Math.random() * 0.03,
             color: color
         });
     }
@@ -552,6 +622,17 @@ function createExplosion(x, y, color) {
 }
 
 function update() {
+    if (isGameOver) {
+        // Update particles only on Game Over
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life -= p.decay;
+        });
+        particles = particles.filter(p => p.life > 0);
+        return;
+    }
+
     // Player Movement
     if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
         player.x -= player.speed;
@@ -573,7 +654,6 @@ function update() {
         if (inv.alive) aliveCount++;
     });
 
-    // Speed scales up intra-wave as remaining invaders decrease!
     const aliveRatio = totalWaveInvaders > 0 ? (aliveCount / totalWaveInvaders) : 1;
     currentInvaderSpeed = baseInvaderSpeed * (1 + (1 - aliveRatio) * 1.2);
 
@@ -582,6 +662,20 @@ function update() {
         inv.x += currentInvaderSpeed * invaderDirection;
         if (inv.x <= 10 || inv.x + inv.w >= canvas.width - 10) {
             hitEdge = true;
+        }
+
+        // --- GAME OVER COLLISION CHECK ---
+        // 1. Invader reaches player baseline Y level
+        // 2. Invader bounding box overlaps player bounding box
+        if (inv.y + inv.h >= player.y) {
+            triggerGameOver();
+        } else if (
+            inv.x < player.x + player.w &&
+            inv.x + inv.w > player.x &&
+            inv.y < player.y + player.h &&
+            inv.y + inv.h > player.y
+        ) {
+            triggerGameOver();
         }
     });
 
@@ -611,7 +705,7 @@ function update() {
     });
 
     // Wave Complete Check
-    if (aliveCount === 0) {
+    if (aliveCount === 0 && !isGameOver) {
         wave++;
         waveEl.textContent = wave;
         playPowerUp();
@@ -643,17 +737,19 @@ function draw() {
         ctx.fillRect(sx, sy, 2, 2);
     }
 
-    // Draw Player Ship
-    ctx.fillStyle = '#00ffcc';
-    ctx.shadowColor = '#00ffcc';
-    ctx.shadowBlur = 10;
-    ctx.beginPath();
-    ctx.moveTo(player.x + player.w / 2, player.y);
-    ctx.lineTo(player.x + player.w, player.y + player.h);
-    ctx.lineTo(player.x, player.y + player.h);
-    ctx.closePath();
-    ctx.fill();
-    ctx.shadowBlur = 0;
+    // Draw Player Ship (if not game over)
+    if (!isGameOver) {
+        ctx.fillStyle = '#00ffcc';
+        ctx.shadowColor = '#00ffcc';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.moveTo(player.x + player.w / 2, player.y);
+        ctx.lineTo(player.x + player.w, player.y + player.h);
+        ctx.lineTo(player.x, player.y + player.h);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
 
     // Draw Bullets
     ctx.fillStyle = '#ff0055';
@@ -668,7 +764,6 @@ function draw() {
     invaders.forEach(inv => {
         if (!inv.alive) return;
 
-        // Invader Badge Background
         ctx.fillStyle = '#141722';
         ctx.strokeStyle = inv.color;
         ctx.lineWidth = 2;
@@ -680,7 +775,6 @@ function draw() {
         ctx.fill();
         ctx.stroke();
 
-        // Invader Tech Name
         ctx.shadowBlur = 0;
         ctx.fillStyle = '#ffffff';
         ctx.font = '10px "Inter", sans-serif';
@@ -699,7 +793,7 @@ function draw() {
     ctx.globalAlpha = 1.0;
 
     // Wave Banner Overlay
-    if (waveBannerTimer > 0) {
+    if (waveBannerTimer > 0 && !isGameOver) {
         ctx.save();
         ctx.fillStyle = '#ff0077';
         ctx.shadowColor = '#ff0077';
@@ -710,6 +804,40 @@ function draw() {
         const alpha = Math.min(1.0, waveBannerTimer / 30);
         ctx.globalAlpha = alpha;
         ctx.fillText(`WAVE ${wave} SPEED UP!`, canvas.width / 2, canvas.height / 2);
+        ctx.restore();
+    }
+
+    // --- GAME OVER OVERLAY SCREEN ---
+    if (isGameOver) {
+        ctx.save();
+        // Semi-transparent dark backdrop
+        ctx.fillStyle = 'rgba(9, 10, 16, 0.85)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // GAME OVER Title
+        ctx.fillStyle = '#ff0055';
+        ctx.shadowColor = '#ff0055';
+        ctx.shadowBlur = 20;
+        ctx.font = '32px "Press Start 2P", monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 60);
+
+        // Score summary
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '14px "Press Start 2P", monospace';
+        ctx.fillText(`FINAL SCORE: ${score}`, canvas.width / 2, canvas.height / 2);
+        ctx.fillText(`WAVE REACHED: ${wave}`, canvas.width / 2, canvas.height / 2 + 30);
+
+        // Restart prompt / button
+        const pulse = Math.sin(Date.now() * 0.005) * 0.3 + 0.7;
+        ctx.fillStyle = `rgba(0, 255, 204, ${pulse})`;
+        ctx.shadowColor = '#00ffcc';
+        ctx.shadowBlur = 10;
+        ctx.font = '13px "Press Start 2P", monospace';
+        ctx.fillText('PRESS SPACE OR CLICK TO RESTART', canvas.width / 2, canvas.height / 2 + 90);
+
         ctx.restore();
     }
 }
