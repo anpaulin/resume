@@ -5,54 +5,43 @@ LATEX       = pdflatex
 LATEX_FLAGS = -interaction=nonstopmode
 PDF_TO_PNG  = pdftoppm
 
-# Source files
-STANDARD_TEX = standard/ariel_paulin.tex
-ATS_TEX      = ats/ariel_paulin_ats.tex
-SE_TEX       = se/ariel_paulin_se.tex
-
-# Output PDFs
-STANDARD_PDF = standard/ariel_paulin.pdf
-ATS_PDF      = ats/ariel_paulin_ats.pdf
-SE_PDF       = se/ariel_paulin_se.pdf
-
-# Output PNGs
-STANDARD_PNG = standard/ariel_paulin.png
-ATS_PNG      = ats/ariel_paulin_ats.png
-SE_PNG       = se/ariel_paulin_se.png
-
 .PHONY: all clean standard ats se
 
 all: standard ats se
 
-standard: $(STANDARD_PNG)
-ats:      $(ATS_PNG)
-se:       $(SE_PNG)
+standard: standard/ariel_paulin.png
+ats:      ats/ariel_paulin_ats.png
+se:       se/ariel_paulin_se.png
 
 # --- Standard ---
-$(STANDARD_PDF): $(STANDARD_TEX)
+standard/ariel_paulin.pdf: standard/ariel_paulin.tex
 	cd standard && $(LATEX) $(LATEX_FLAGS) ariel_paulin.tex
 
-$(STANDARD_PNG): $(STANDARD_PDF)
-	$(PDF_TO_PNG) -png $(STANDARD_PDF) > $(STANDARD_PNG)
+standard/ariel_paulin.png: standard/ariel_paulin.pdf
+	cd standard && $(PDF_TO_PNG) -png ariel_paulin.pdf > ariel_paulin.png
 
 # --- ATS ---
-$(ATS_PDF): $(ATS_TEX)
+ats/ariel_paulin_ats.pdf: ats/ariel_paulin_ats.tex
 	cd ats && $(LATEX) $(LATEX_FLAGS) ariel_paulin_ats.tex
 
-$(ATS_PNG): $(ATS_PDF)
-	$(PDF_TO_PNG) -png $(ATS_PDF) > $(ATS_PNG)
+ats/ariel_paulin_ats.png: ats/ariel_paulin_ats.pdf
+	cd ats && $(PDF_TO_PNG) -png ariel_paulin_ats.pdf ariel_paulin_ats
 
 # --- Sales Engineering ---
-$(SE_PDF): $(SE_TEX)
+se/ariel_paulin_se.pdf: se/ariel_paulin_se.tex
 	cd se && $(LATEX) $(LATEX_FLAGS) ariel_paulin_se.tex
 
-$(SE_PNG): $(SE_PDF)
-	$(PDF_TO_PNG) -png $(SE_PDF) > $(SE_PNG)
+se/ariel_paulin_se.png: se/ariel_paulin_se.pdf
+	cd se && $(PDF_TO_PNG) -png ariel_paulin_se.pdf > ariel_paulin_se.png
 
 # --- Clean ---
 clean:
-	rm -f $(STANDARD_PDF) $(ATS_PDF) $(SE_PDF) \
-	      $(STANDARD_PNG) $(ATS_PNG) $(SE_PNG) \
+	rm -f standard/ariel_paulin.pdf standard/ariel_paulin.png \
+	      ats/ariel_paulin_ats.pdf  ats/ariel_paulin_ats.png ats/ariel_paulin_ats-*.png \
+	      se/ariel_paulin_se.pdf    se/ariel_paulin_se.png \
 	      standard/*.aux standard/*.log standard/*.out \
 	      ats/*.aux      ats/*.log      ats/*.out \
-	      se/*.aux       se/*.log       se/*.out
+	      se/*.aux       se/*.log       se/*.out \
+	      ariel_paulin.pdf ariel_paulin.png \
+	      ariel_paulin_ats.pdf ariel_paulin_ats.png ariel_paulin_ats-*.png \
+	      ariel_paulin_se.pdf ariel_paulin_se.png
