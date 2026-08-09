@@ -4,7 +4,6 @@
 LATEX       = pdflatex
 LATEX_FLAGS = -interaction=nonstopmode
 PDF_TO_PNG  = pdftoppm
-MAKE4HT     = /Library/TeX/texbin/make4ht
 
 .PHONY: all clean standard ats se formats html
 
@@ -28,8 +27,8 @@ standard/ariel_paulin.png: standard/ariel_paulin.pdf
 standard/ariel_paulin.json standard/ariel_paulin.txt: standard/ariel_paulin.tex experience/*.tex education.tex scripts/generate_formats.py
 	python3 scripts/generate_formats.py
 
-standard/ariel_paulin.html: standard/ariel_paulin.tex experience/*.tex education.tex
-	cd standard && $(MAKE4HT) -u ariel_paulin.tex && rm -f *.4ct *.4tc *.idv *.lg *.tmp *.xref
+standard/ariel_paulin.html: standard/ariel_paulin.tex experience/*.tex education.tex scripts/compile_html.py
+	python3 scripts/compile_html.py
 
 # --- ATS ---
 ats/ariel_paulin_ats.pdf: ats/ariel_paulin_ats.tex
@@ -47,8 +46,7 @@ se/ariel_paulin_se.png: se/ariel_paulin_se.pdf
 
 # --- Clean ---
 clean:
-	rm -f standard/ariel_paulin.pdf standard/ariel_paulin.png standard/ariel_paulin.json standard/ariel_paulin.txt standard/ariel_paulin.html standard/ariel_paulin.css \
-	      standard/*.4ct standard/*.4tc standard/*.idv standard/*.lg standard/*.tmp standard/*.xref \
+	rm -f standard/ariel_paulin.pdf standard/ariel_paulin.png standard/ariel_paulin.json standard/ariel_paulin.txt standard/ariel_paulin.html \
 	      ats/ariel_paulin_ats.pdf  ats/ariel_paulin_ats.png ats/ariel_paulin_ats-*.png \
 	      se/ariel_paulin_se.pdf    se/ariel_paulin_se.png \
 	      standard/*.aux standard/*.log standard/*.out \
