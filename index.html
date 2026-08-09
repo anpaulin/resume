@@ -402,6 +402,7 @@ let gameActive = false;
 let animId = null;
 let score = 0;
 let wave = 1;
+let waveBannerTimer = 0;
 
 const overlay = document.getElementById('game-overlay');
 const canvas = document.getElementById('game-canvas');
@@ -416,7 +417,9 @@ let invaders = [];
 let particles = [];
 let keys = {};
 let invaderDirection = 1;
-let invaderSpeed = 1;
+let baseInvaderSpeed = 1.0;
+let currentInvaderSpeed = 1.0;
+let totalWaveInvaders = 24;
 let lastShot = 0;
 
 function resizeCanvas() {
@@ -492,6 +495,7 @@ function spawnInvaders() {
     invaders = [];
     const cols = Math.min(6, Math.floor((canvas.width - 80) / 130));
     const rows = 4;
+    totalWaveInvaders = cols * rows;
     const startX = (canvas.width - (cols * 120)) / 2;
     const startY = 80;
 
@@ -512,7 +516,10 @@ function spawnInvaders() {
         }
     }
     invaderDirection = 1;
-    invaderSpeed = 0.8 + wave * 0.3;
+    // Each wave speeds up progressively!
+    baseInvaderSpeed = 1.0 + (wave - 1) * 0.75;
+    currentInvaderSpeed = baseInvaderSpeed;
+    waveBannerTimer = 90; // Frame count for banner (~1.5s)
 }
 
 function shootLaser() {
@@ -558,14 +565,21 @@ function update() {
     bullets.forEach(b => b.y -= b.speed);
     bullets = bullets.filter(b => b.y > -20);
 
-    // Invaders Movement
+    // Invaders Count & Speed Calculation
     let hitEdge = false;
     let aliveCount = 0;
 
     invaders.forEach(inv => {
+        if (inv.alive) aliveCount++;
+    });
+
+    // Speed scales up intra-wave as remaining invaders decrease!
+    const aliveRatio = totalWaveInvaders > 0 ? (aliveCount / totalWaveInvaders) : 1;
+    currentInvaderSpeed = baseInvaderSpeed * (1 + (1 - aliveRatio) * 1.2);
+
+    invaders.forEach(inv => {
         if (!inv.alive) return;
-        aliveCount++;
-        inv.x += invaderSpeed * invaderDirection;
+        inv.x += currentInvaderSpeed * invaderDirection;
         if (inv.x <= 10 || inv.x + inv.w >= canvas.width - 10) {
             hitEdge = true;
         }
@@ -589,7 +603,7 @@ function update() {
 
                 inv.alive = false;
                 b.y = -999;
-                score += 100;
+                score += 100 * wave;
                 scoreEl.textContent = score;
                 createExplosion(inv.x + inv.w / 2, inv.y + inv.h / 2, inv.color);
             }
@@ -602,6 +616,11 @@ function update() {
         waveEl.textContent = wave;
         playPowerUp();
         spawnInvaders();
+    }
+
+    // Banner Timer
+    if (waveBannerTimer > 0) {
+        waveBannerTimer--;
     }
 
     // Particles
@@ -678,6 +697,21 @@ function draw() {
         ctx.fillRect(p.x, p.y, 4, 4);
     });
     ctx.globalAlpha = 1.0;
+
+    // Wave Banner Overlay
+    if (waveBannerTimer > 0) {
+        ctx.save();
+        ctx.fillStyle = '#ff0077';
+        ctx.shadowColor = '#ff0077';
+        ctx.shadowBlur = 15;
+        ctx.font = '24px "Press Start 2P", monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const alpha = Math.min(1.0, waveBannerTimer / 30);
+        ctx.globalAlpha = alpha;
+        ctx.fillText(`WAVE ${wave} SPEED UP!`, canvas.width / 2, canvas.height / 2);
+        ctx.restore();
+    }
 }
 
 function gameLoop() {
