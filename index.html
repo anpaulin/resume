@@ -12,10 +12,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
             position: relative;
+            padding: 40px 0;
+            box-sizing: border-box;
         }
 
         img {
@@ -23,59 +25,100 @@
             height: auto;
             display: block;
             margin: auto;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border-radius: 4px;
         }
 
-        .download-button {
+        .download-container {
             position: fixed;
             top: 24px;
             right: 24px;
-            background-color: #1a1a2e;
-            color: #ffffff;
-            padding: 14px 28px;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            text-decoration: none;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
         }
 
-        .download-button:hover {
+        .download-button {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-button.primary {
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        .download-button.primary:hover {
             background-color: #16213e;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .download-button.secondary {
+            background-color: #ffffff;
+            color: #1a1a2e;
+            border: 1px solid #d0d0d5;
+        }
+
+        .download-button.secondary:hover {
+            background-color: #f8f9fa;
+            border-color: #1a1a2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         .download-button:active {
             transform: translateY(0);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 600px) {
+            body {
+                padding: 70px 0 20px 0;
+            }
+
             img {
-                width: 100%;
+                width: 95%;
                 max-width: 100%;
                 object-fit: contain;
             }
 
+            .download-container {
+                top: 12px;
+                right: 12px;
+                gap: 6px;
+            }
+
             .download-button {
-                padding: 16px 30px;
-                font-size: 16px;
-                top: 16px;
-                right: 16px;
+                padding: 10px 14px;
+                font-size: 13px;
             }
         }
     </style>
 </head>
 <body>
 
-<a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-button">
-    Download Resume
-</a>
+<div class="download-container">
+    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-button primary">
+        Download PDF
+    </a>
+    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.json" download class="download-button secondary">
+        JSON
+    </a>
+    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.txt" download class="download-button secondary">
+        TXT
+    </a>
+</div>
 
 <img src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
 

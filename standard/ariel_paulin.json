@@ -1,0 +1,123 @@
+{
+  "name": "Ariel Paulin",
+  "contact": {
+    "email": "ariel.paulin@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/arielpaulin",
+    "github": "https://github.com/anpaulin"
+  },
+  "summary": "Results-oriented Software Engineer and Team Lead with 8+ years of experience designing high-scale JVM applications and leading agile engineering teams.",
+  "experience": [
+    {
+      "title": "Technical Team Lead",
+      "company": "A2X Accounting",
+      "location": "Toronto, Ontario (Remote)",
+      "start": "Feb 2026",
+      "end": "Jul 2026",
+      "bullets": [
+        "Refactored legacy Java Amazon SP-API integrations on App Engine and Spanner to resolve tech debt",
+        "Led technical planning and roadmapping, mentoring developers on clean code and best practices",
+        "Hardened unstable beta features, reducing customer incident turnaround by 96%",
+        "Enhanced system reliability by building GCP Monitoring dashboards and alerting for key features",
+        "Championed Claude Code best practices when automating PRs, tickets, and system design docs"
+      ]
+    },
+    {
+      "title": "Senior Software Developer",
+      "company": "CNH Industrial",
+      "location": "Toronto, Ontario (Remote)",
+      "start": "Mar 2023",
+      "end": "Feb 2026",
+      "bullets": [
+        "Architected robust, real-time telemetry pipelines processing 2B+ daily records using Scala, Spark, and Flink",
+        "Optimized batch jobs and enhanced analytics workflows using Databricks notebooks",
+        "Designed REST APIs and integrated enhanced engineering monitoring and dashboarding",
+        "Extended the internal telemetry rules engine, enabling complex cross-domain query compositions",
+        "Spearheaded Java/Spring Boot feature development enabling data import and export for users"
+      ]
+    },
+    {
+      "title": "Senior Software Developer",
+      "company": "DataPassports",
+      "location": "Toronto, Ontario (Remote)",
+      "start": "Jul 2020",
+      "end": "Dec 2022",
+      "bullets": [
+        "Enhanced a Scala-based Spark application with a cross-functional team, improving performance and scalability",
+        "Implemented a multi-stage Scala Spark pipeline integrating TensorFlow Java API for entity recognition",
+        "Optimized API workflows with Kafka and Spark Streaming, achieving ~ 20x better processing performance",
+        "Developed token-based authentication for Azure SQL using Azure Active Directory to improve security",
+        "Partnered with leadership to define specs and deliver custom features for high-value enterprise clients"
+      ]
+    },
+    {
+      "title": "Scala Developer",
+      "company": "AwareAds",
+      "location": "Toronto, Ontario",
+      "start": "Jun 2019",
+      "end": "Jul 2020",
+      "bullets": [
+        "Acted as the lead Scala developer of the Real-Time Bidding Platform (RTB)",
+        "Conducted technical audits of core services to identify scaling bottlenecks and define roadmaps",
+        "Redesigned and implemented all backend microservices using the Play Framework",
+        "Built an AdExchange simulator for stress testing infrastructure and simulating the RTB environment",
+        "Created testing suites using ScalaTest and custom scripts for data transformations"
+      ]
+    },
+    {
+      "title": "Play Developer",
+      "company": "Publicis Sapient",
+      "location": "Toronto, Ontario",
+      "start": "Oct 2018",
+      "end": "Apr 2019",
+      "bullets": [
+        "Engineered features for Walmart.ca\u2019s checkout flow using Play Framework to enhance user experience",
+        "Collaborated with a cross-functional team to integrate third-party services, ensuring seamless functionality",
+        "Deployed and maintained services using Jenkins and Walmart internal tools, ensuring reliability",
+        "Created automated test suites using ScalaTest and assisted in refactoring legacy codebase tests"
+      ]
+    }
+  ],
+  "skills": {
+    "languages": [
+      "Scala",
+      "Java",
+      "SQL",
+      "JavaScript"
+    ],
+    "frameworks_and_libraries": [
+      "Akka",
+      "Spark",
+      "Kafka",
+      "Flink",
+      "Play Framework",
+      "Spring Boot",
+      "React"
+    ],
+    "cloud_and_devops": [
+      "GCP",
+      "Azure",
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Grafana",
+      "Git",
+      "Claude Code"
+    ],
+    "technical_leadership": [
+      "Cross-Functional Leadership",
+      "Stakeholder Management",
+      "Technical Translation",
+      "Mentorship"
+    ]
+  },
+  "education": [
+    {
+      "institution": "University of Waterloo",
+      "degree": "BASc. Computer Engineering",
+      "location": "Waterloo, Ontario",
+      "start": "Sep 2013",
+      "end": "Apr 2018"
+    }
+  ]
+}

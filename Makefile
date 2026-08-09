@@ -5,13 +5,15 @@ LATEX       = pdflatex
 LATEX_FLAGS = -interaction=nonstopmode
 PDF_TO_PNG  = pdftoppm
 
-.PHONY: all clean standard ats se
+.PHONY: all clean standard ats se formats
 
 all: standard ats se
 
-standard: standard/ariel_paulin.png
+standard: standard/ariel_paulin.png standard/ariel_paulin.json standard/ariel_paulin.txt
 ats:      ats/ariel_paulin_ats.png
 se:       se/ariel_paulin_se.png
+
+formats: standard/ariel_paulin.json standard/ariel_paulin.txt
 
 # --- Standard ---
 standard/ariel_paulin.pdf: standard/ariel_paulin.tex
@@ -19,6 +21,9 @@ standard/ariel_paulin.pdf: standard/ariel_paulin.tex
 
 standard/ariel_paulin.png: standard/ariel_paulin.pdf
 	cd standard && $(PDF_TO_PNG) -png ariel_paulin.pdf > ariel_paulin.png
+
+standard/ariel_paulin.json standard/ariel_paulin.txt: standard/ariel_paulin.tex experience/*.tex education.tex scripts/generate_formats.py
+	python3 scripts/generate_formats.py
 
 # --- ATS ---
 ats/ariel_paulin_ats.pdf: ats/ariel_paulin_ats.tex
@@ -36,7 +41,7 @@ se/ariel_paulin_se.png: se/ariel_paulin_se.pdf
 
 # --- Clean ---
 clean:
-	rm -f standard/ariel_paulin.pdf standard/ariel_paulin.png \
+	rm -f standard/ariel_paulin.pdf standard/ariel_paulin.png standard/ariel_paulin.json standard/ariel_paulin.txt \
 	      ats/ariel_paulin_ats.pdf  ats/ariel_paulin_ats.png ats/ariel_paulin_ats-*.png \
 	      se/ariel_paulin_se.pdf    se/ariel_paulin_se.png \
 	      standard/*.aux standard/*.log standard/*.out \

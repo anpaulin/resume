@@ -1,0 +1,58 @@
+Ariel Paulin
+ariel.paulin@gmail.com | linkedin.com/in/arielpaulin | github.com/anpaulin
+
+Results-oriented Software Engineer and Team Lead with 8+ years of experience designing high-scale JVM applications and leading agile engineering teams.
+
+─────────────────────────────────────────
+EXPERIENCE
+─────────────────────────────────────────
+
+Technical Team Lead | A2X Accounting | Toronto, Ontario (Remote)  Feb 2026 – Jul 2026
+  • Refactored legacy Java Amazon SP-API integrations on App Engine and Spanner to resolve tech debt
+  • Led technical planning and roadmapping, mentoring developers on clean code and best practices
+  • Hardened unstable beta features, reducing customer incident turnaround by 96%
+  • Enhanced system reliability by building GCP Monitoring dashboards and alerting for key features
+  • Championed Claude Code best practices when automating PRs, tickets, and system design docs
+
+Senior Software Developer | CNH Industrial | Toronto, Ontario (Remote)  Mar 2023 – Feb 2026
+  • Architected robust, real-time telemetry pipelines processing 2B+ daily records using Scala, Spark, and Flink
+  • Optimized batch jobs and enhanced analytics workflows using Databricks notebooks
+  • Designed REST APIs and integrated enhanced engineering monitoring and dashboarding
+  • Extended the internal telemetry rules engine, enabling complex cross-domain query compositions
+  • Spearheaded Java/Spring Boot feature development enabling data import and export for users
+
+Senior Software Developer | DataPassports | Toronto, Ontario (Remote)  Jul 2020 – Dec 2022
+  • Enhanced a Scala-based Spark application with a cross-functional team, improving performance and scalability
+  • Implemented a multi-stage Scala Spark pipeline integrating TensorFlow Java API for entity recognition
+  • Optimized API workflows with Kafka and Spark Streaming, achieving ~ 20x better processing performance
+  • Developed token-based authentication for Azure SQL using Azure Active Directory to improve security
+  • Partnered with leadership to define specs and deliver custom features for high-value enterprise clients
+
+Scala Developer | AwareAds | Toronto, Ontario                Jun 2019 – Jul 2020
+  • Acted as the lead Scala developer of the Real-Time Bidding Platform (RTB)
+  • Conducted technical audits of core services to identify scaling bottlenecks and define roadmaps
+  • Redesigned and implemented all backend microservices using the Play Framework
+  • Built an AdExchange simulator for stress testing infrastructure and simulating the RTB environment
+  • Created testing suites using ScalaTest and custom scripts for data transformations
+
+Play Developer | Publicis Sapient | Toronto, Ontario         Oct 2018 – Apr 2019
+  • Engineered features for Walmart.ca’s checkout flow using Play Framework to enhance user experience
+  • Collaborated with a cross-functional team to integrate third-party services, ensuring seamless functionality
+  • Deployed and maintained services using Jenkins and Walmart internal tools, ensuring reliability
+  • Created automated test suites using ScalaTest and assisted in refactoring legacy codebase tests
+
+─────────────────────────────────────────
+SKILLS
+─────────────────────────────────────────
+
+Languages:              Scala | Java | SQL | JavaScript
+Frameworks & Libraries: Akka | Spark | Kafka | Flink | Play Framework | Spring Boot | React
+Cloud & DevOps:         GCP | Azure | AWS | Docker | Kubernetes | Terraform | Grafana | Git | Claude Code
+Technical Leadership:   Cross-Functional Leadership | Stakeholder Management | Technical Translation | Mentorship
+
+─────────────────────────────────────────
+EDUCATION
+─────────────────────────────────────────
+
+University of Waterloo | BASc. Computer Engineering          Sep 2013 – Apr 2018
+Waterloo, Ontario
