@@ -1,47 +1,58 @@
-# Makefile for compiling ariel_paulin.tex file and converting to PNG
+# Makefile for compiling all resume versions
+# Each version lives in its own subdirectory
 
-# The name of the output PDF
-OUTPUT_PDF = ariel_paulin.pdf
-OUTPUT_ATS_PDF = ariel_paulin_ats.pdf
-
-# The name of the source .tex file
-TEX_FILE = ariel_paulin.tex
-TEX_ATS_FILE = ariel_paulin_ats.tex
-
-# The name of the output PNG
-OUTPUT_PNG = ariel_paulin.png
-OUTPUT_ATS_PNG = ariel_paulin_ats.png
-
-# LaTeX command to use (use 'xelatex' or 'lualatex' if needed)
-LATEX = pdflatex
-
-# Command to convert PDF to PNG
-PDF_TO_PNG = pdftoppm
-
-# Flags for pdflatex (you can modify these if needed)
+LATEX       = pdflatex
 LATEX_FLAGS = -interaction=nonstopmode
+PDF_TO_PNG  = pdftoppm
 
-# Default target
-all: $(OUTPUT_PNG) $(OUTPUT_ATS_PNG)
+# Source files
+STANDARD_TEX = standard/ariel_paulin.tex
+ATS_TEX      = ats/ariel_paulin_ats.tex
+SE_TEX       = se/ariel_paulin_se.tex
 
-# Compile the .tex file to .pdf
-$(OUTPUT_PDF): $(TEX_FILE)
-	$(LATEX) $(LATEX_FLAGS) $(TEX_FILE)
+# Output PDFs
+STANDARD_PDF = standard/ariel_paulin.pdf
+ATS_PDF      = ats/ariel_paulin_ats.pdf
+SE_PDF       = se/ariel_paulin_se.pdf
 
-$(OUTPUT_ATS_PDF): $(TEX_ATS_FILE)
-	$(LATEX) $(LATEX_FLAGS) $(TEX_ATS_FILE)
+# Output PNGs
+STANDARD_PNG = standard/ariel_paulin.png
+ATS_PNG      = ats/ariel_paulin_ats.png
+SE_PNG       = se/ariel_paulin_se.png
 
-# Convert the PDF to PNG
-$(OUTPUT_PNG): $(OUTPUT_PDF)
-	$(PDF_TO_PNG) -png $(OUTPUT_PDF) > $(OUTPUT_PNG)
+.PHONY: all clean standard ats se
 
-$(OUTPUT_ATS_PNG): $(OUTPUT_ATS_PDF)
-	$(PDF_TO_PNG) -png $(OUTPUT_ATS_PDF) > $(OUTPUT_ATS_PNG)
+all: standard ats se
 
-# Clean up auxiliary files created by LaTeX
+standard: $(STANDARD_PNG)
+ats:      $(ATS_PNG)
+se:       $(SE_PNG)
+
+# --- Standard ---
+$(STANDARD_PDF): $(STANDARD_TEX)
+	cd standard && $(LATEX) $(LATEX_FLAGS) ariel_paulin.tex
+
+$(STANDARD_PNG): $(STANDARD_PDF)
+	$(PDF_TO_PNG) -png $(STANDARD_PDF) > $(STANDARD_PNG)
+
+# --- ATS ---
+$(ATS_PDF): $(ATS_TEX)
+	cd ats && $(LATEX) $(LATEX_FLAGS) ariel_paulin_ats.tex
+
+$(ATS_PNG): $(ATS_PDF)
+	$(PDF_TO_PNG) -png $(ATS_PDF) > $(ATS_PNG)
+
+# --- Sales Engineering ---
+$(SE_PDF): $(SE_TEX)
+	cd se && $(LATEX) $(LATEX_FLAGS) ariel_paulin_se.tex
+
+$(SE_PNG): $(SE_PDF)
+	$(PDF_TO_PNG) -png $(SE_PDF) > $(SE_PNG)
+
+# --- Clean ---
 clean:
-	rm -f $(OUTPUT_PDF) $(OUTPUT_ATS_PDF) *.aux *.log *.out *.toc *.lof *.lot $(OUTPUT_PNG) $(OUTPUT_ATS_PNG)
-
-.PHONY: all clean
-
-
+	rm -f $(STANDARD_PDF) $(ATS_PDF) $(SE_PDF) \
+	      $(STANDARD_PNG) $(ATS_PNG) $(SE_PNG) \
+	      standard/*.aux standard/*.log standard/*.out \
+	      ats/*.aux      ats/*.log      ats/*.out \
+	      se/*.aux       se/*.log       se/*.out

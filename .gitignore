@@ -1,6 +1,14 @@
+# LaTeX build artifacts
 *.log
-*tmp*
-.DS_Store
 *.aux
 *.out
+*.toc
+*.lof
+*.lot
+
+# macOS
+.DS_Store
+*tmp*
+
+# Ignored directories
 job_tracker/
