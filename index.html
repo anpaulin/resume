@@ -14,50 +14,54 @@
             --bg-light: #f0f2f5;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background-color: var(--bg-light);
             color: #000000;
             margin: 0;
-            padding: 40px 16px 60px 16px;
+            padding: 70px 16px 60px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
         /* Fixed Top Action Bar */
         .download-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 8px;
             border-radius: 12px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
         .download-button {
             font-family: 'Inter', sans-serif;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             letter-spacing: 0.02em;
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 8px;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             border: none;
+            white-space: nowrap;
         }
 
         .download-button.primary {
@@ -91,7 +95,6 @@
             padding: 3px;
             border-radius: 8px;
             margin-bottom: 20px;
-            margin-top: 10px;
         }
 
         .toggle-btn {
@@ -113,14 +116,13 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
-        /* Resume Document Box (HTML View matched precisely to 8.5 x 11 PDF proportion) */
+        /* Resume Document Box (Desktop) */
         .resume-document {
             background: #ffffff;
             width: 100%;
             max-width: 820px;
             min-height: 1060px;
             padding: 42px 48px;
-            box-sizing: border-box;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             border-radius: 2px;
             line-height: 1.35;
@@ -405,9 +407,10 @@
             background: rgba(255, 0, 85, 0.7);
         }
 
-        @media (max-width: 650px) {
+        /* --- MOBILE RESPONSIVE OVERRIDES --- */
+        @media (max-width: 768px) {
             body {
-                padding: 70px 10px 40px 10px;
+                padding: 68px 12px 40px 12px;
             }
 
             .download-container {
@@ -415,25 +418,88 @@
                 right: 10px;
                 left: 10px;
                 justify-content: center;
+                gap: 4px;
+                padding: 4px;
+            }
+
+            .download-button {
+                font-size: 11.5px;
+                padding: 6px 10px;
             }
 
             .resume-document {
-                padding: 20px 14px;
+                padding: 24px 16px;
                 min-height: auto;
+                border-radius: 8px;
+            }
+
+            .resume-header h1 {
+                font-size: 24px;
+            }
+
+            .contact-links {
+                font-size: 11.5px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .contact-links .sep {
+                display: none;
+            }
+
+            .contact-links a {
+                background: #f1f5f9;
+                padding: 2px 8px;
+                border-radius: 4px;
+            }
+
+            .summary-quote {
+                font-size: 12px;
+                margin: 10px 0 16px 0;
             }
 
             .exp-header {
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 2px;
+                margin-bottom: 4px;
+            }
+
+            .exp-title-line {
+                font-size: 13px;
+                line-height: 1.35;
+            }
+
+            .exp-dates {
+                font-size: 11.5px;
+                color: #666;
+            }
+
+            .exp-bullets {
+                padding-left: 16px;
+            }
+
+            .exp-bullets li {
+                font-size: 12.5px;
+                margin-bottom: 4px;
             }
 
             .skills-row {
                 flex-direction: column;
-                margin-bottom: 6px;
+                margin-bottom: 8px;
             }
 
             .skills-label {
                 width: 100%;
+                font-size: 12.5px;
+                margin-bottom: 2px;
+            }
+
+            .skills-items {
+                font-size: 12px;
+                line-height: 1.5;
             }
 
             .mobile-controls {
