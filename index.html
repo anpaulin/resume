@@ -6,62 +6,53 @@
     <title>Ariel Paulin — Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-blue: #0395DE;
-            --text-dark: #000000;
-            --bg-light: #f0f2f5;
-        }
-
-        * {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            padding: 40px 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg-light);
-            color: #000000;
-            margin: 0;
-            padding: 70px 16px 60px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+        img {
+            width: 65%;
+            height: auto;
+            display: block;
+            margin: auto;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border-radius: 4px;
         }
 
-        /* Fixed Top Action Bar */
         .download-container {
             position: fixed;
-            top: 16px;
-            right: 16px;
+            top: 24px;
+            right: 24px;
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 5px 8px;
-            border-radius: 12px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
         .download-button {
             font-family: 'Inter', sans-serif;
-            font-size: 12.5px;
+            font-size: 14px;
             font-weight: 600;
-            letter-spacing: 0.02em;
-            padding: 7px 14px;
-            border-radius: 8px;
+            letter-spacing: 0.03em;
+            padding: 12px 20px;
+            border-radius: 10px;
             text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             border: none;
-            white-space: nowrap;
         }
 
         .download-button.primary {
@@ -71,8 +62,8 @@
 
         .download-button.primary:hover {
             background-color: #16213e;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         .download-button.secondary {
@@ -84,199 +75,13 @@
         .download-button.secondary:hover {
             background-color: #f8f9fa;
             border-color: #1a1a2e;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* View Mode Switcher */
-        .view-toggle-container {
-            display: flex;
-            background: #e2e8f0;
-            padding: 3px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .toggle-btn {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 8px 18px;
-            border: none;
-            border-radius: 6px;
-            background: transparent;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .toggle-btn.active {
-            background: #ffffff;
-            color: #1a1a2e;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Resume Document Box (Desktop) */
-        .resume-document {
-            background: #ffffff;
-            width: 100%;
-            max-width: 820px;
-            min-height: 1060px;
-            padding: 42px 48px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-radius: 2px;
-            line-height: 1.35;
-            user-select: text;
-        }
-
-        .resume-header {
-            text-align: center;
-            margin-bottom: 6px;
-        }
-
-        .resume-header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 0 2px 0;
-            color: #000;
-            letter-spacing: -0.01em;
-        }
-
-        .contact-links {
-            font-size: 12.5px;
-            color: #000;
-        }
-
-        .contact-links a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        .contact-links a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-links .sep {
-            margin: 0 4px;
-            color: #000;
-            font-weight: 400;
-        }
-
-        .summary-quote {
-            font-style: italic;
-            font-size: 12px;
-            color: #000;
-            text-align: center;
-            margin: 6px 0 14px 0;
-            line-height: 1.35;
-        }
-
-        /* Section Headings */
-        .resume-section {
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            text-transform: none;
-            margin: 0 0 6px 0;
-            padding-bottom: 2px;
-            border-bottom: 1px solid var(--primary-blue);
-        }
-
-        /* Experience Entry */
-        .exp-item {
-            margin-bottom: 8px;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 2px;
-        }
-
-        .exp-title-line {
-            font-size: 12.5px;
-            color: #000;
-        }
-
-        .exp-title {
-            font-weight: 700;
-        }
-
-        .exp-company {
-            font-weight: 700;
-        }
-
-        .exp-location {
-            font-style: italic;
-            color: var(--primary-blue);
-            font-size: 11.5px;
-        }
-
-        .exp-dates {
-            font-size: 12.5px;
-            font-weight: 700;
-            color: #000;
-            white-space: nowrap;
-        }
-
-        .exp-bullets {
-            margin: 2px 0 0 0;
-            padding-left: 18px;
-        }
-
-        .exp-bullets li {
-            font-size: 12px;
-            color: #000;
-            margin-bottom: 2px;
-            line-height: 1.35;
-        }
-
-        /* Skills Table */
-        .skills-list {
-            font-size: 12px;
-            line-height: 1.45;
-        }
-
-        .skills-row {
-            display: flex;
-            margin-bottom: 2px;
-        }
-
-        .skills-label {
-            font-weight: 700;
-            width: 175px;
-            flex-shrink: 0;
-            color: #000;
-        }
-
-        .skills-items {
-            color: #000;
-        }
-
-        .skills-items .pipe {
-            color: #000;
-            margin: 0 4px;
-            font-weight: 700;
-        }
-
-        /* Image View Container */
-        .image-view-container {
-            display: none;
-            width: 100%;
-            max-width: 820px;
-        }
-
-        .image-view-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-radius: 2px;
+        .download-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         /* Retro Hint Badge */
@@ -299,7 +104,7 @@
         }
 
         .konami-hint:hover {
-            color: var(--primary-blue);
+            color: #0395DE;
         }
 
         /* Space Invaders Game Overlay */
@@ -407,99 +212,28 @@
             background: rgba(255, 0, 85, 0.7);
         }
 
-        /* --- MOBILE RESPONSIVE OVERRIDES --- */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             body {
-                padding: 68px 12px 40px 12px;
+                padding: 70px 0 20px 0;
+            }
+
+            img {
+                width: 95%;
+                max-width: 100%;
+                object-fit: contain;
             }
 
             .download-container {
-                top: 10px;
-                right: 10px;
-                left: 10px;
+                top: 12px;
+                right: 12px;
+                left: 12px;
                 justify-content: center;
-                gap: 4px;
-                padding: 4px;
+                gap: 6px;
             }
 
             .download-button {
-                font-size: 11.5px;
-                padding: 6px 10px;
-            }
-
-            .resume-document {
-                padding: 24px 16px;
-                min-height: auto;
-                border-radius: 8px;
-            }
-
-            .resume-header h1 {
-                font-size: 24px;
-            }
-
-            .contact-links {
-                font-size: 11.5px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 4px;
-            }
-
-            .contact-links .sep {
-                display: none;
-            }
-
-            .contact-links a {
-                background: #f1f5f9;
-                padding: 2px 8px;
-                border-radius: 4px;
-            }
-
-            .summary-quote {
+                padding: 10px 12px;
                 font-size: 12px;
-                margin: 10px 0 16px 0;
-            }
-
-            .exp-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2px;
-                margin-bottom: 4px;
-            }
-
-            .exp-title-line {
-                font-size: 13px;
-                line-height: 1.35;
-            }
-
-            .exp-dates {
-                font-size: 11.5px;
-                color: #666;
-            }
-
-            .exp-bullets {
-                padding-left: 16px;
-            }
-
-            .exp-bullets li {
-                font-size: 12.5px;
-                margin-bottom: 4px;
-            }
-
-            .skills-row {
-                flex-direction: column;
-                margin-bottom: 8px;
-            }
-
-            .skills-label {
-                width: 100%;
-                font-size: 12.5px;
-                margin-bottom: 2px;
-            }
-
-            .skills-items {
-                font-size: 12px;
-                line-height: 1.5;
             }
 
             .mobile-controls {
@@ -526,154 +260,8 @@
     </a>
 </div>
 
-<!-- View Switcher -->
-<div class="view-toggle-container">
-    <button class="toggle-btn active" id="btn-html-view">Interactive Web View</button>
-    <button class="toggle-btn" id="btn-img-view">Image View</button>
-</div>
-
-<!-- Interactive HTML Resume (Selectable / Highlightable) -->
-<div class="resume-document" id="html-resume-view">
-    <div class="resume-header">
-        <h1>Ariel Paulin</h1>
-        <div class="contact-links">
-            <a href="mailto:ariel.paulin@gmail.com">ariel.paulin@gmail.com</a>
-            <span class="sep">|</span>
-            <a href="https://www.linkedin.com/in/arielpaulin" target="_blank" rel="noopener">linkedin.com/in/arielpaulin</a>
-            <span class="sep">|</span>
-            <a href="https://github.com/anpaulin" target="_blank" rel="noopener">github.com/anpaulin</a>
-        </div>
-    </div>
-
-    <div class="summary-quote">
-        Results-oriented Software Engineer and Team Lead with 8+ years of experience designing high-scale JVM applications and leading agile engineering teams.
-    </div>
-
-    <!-- EXPERIENCE SECTION -->
-    <div class="resume-section">
-        <div class="section-title">Experience</div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">Technical Team Lead</span> <span class="sep">|</span> <span class="exp-company">A2X Accounting</span> <span class="sep">|</span> <span class="exp-location">Toronto, Ontario (Remote)</span>
-                </div>
-                <div class="exp-dates">Feb 2026 – Jul 2026</div>
-            </div>
-            <ul class="exp-bullets">
-                <li>Refactored legacy Java Amazon SP-API integrations on App Engine and Spanner to resolve tech debt</li>
-                <li>Led technical planning and roadmapping, mentoring developers on clean code and best practices</li>
-                <li>Hardened unstable beta features, reducing customer incident turnaround by 96%</li>
-                <li>Enhanced system reliability by building GCP Monitoring dashboards and alerting for key features</li>
-                <li>Championed Claude Code best practices when automating PRs, tickets, and system design docs</li>
-            </ul>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">Senior Software Developer</span> <span class="sep">|</span> <span class="exp-company">CNH Industrial</span> <span class="sep">|</span> <span class="exp-location">Toronto, Ontario (Remote)</span>
-                </div>
-                <div class="exp-dates">Mar 2023 – Feb 2026</div>
-            </div>
-            <ul class="exp-bullets">
-                <li>Architected robust, real-time telemetry pipelines processing 2B+ daily records using Scala, Spark, and Flink</li>
-                <li>Optimized batch jobs and enhanced analytics workflows using Databricks notebooks</li>
-                <li>Designed REST APIs and integrated enhanced engineering monitoring and dashboarding</li>
-                <li>Extended the internal telemetry rules engine, enabling complex cross-domain query compositions</li>
-                <li>Spearheaded Java/Spring Boot feature development enabling data import and export for users</li>
-            </ul>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">Senior Software Developer</span> <span class="sep">|</span> <span class="exp-company">DataPassports</span> <span class="sep">|</span> <span class="exp-location">Toronto, Ontario (Remote)</span>
-                </div>
-                <div class="exp-dates">Jul 2020 – Dec 2022</div>
-            </div>
-            <ul class="exp-bullets">
-                <li>Enhanced a Scala-based Spark application with a cross-functional team, improving performance and scalability</li>
-                <li>Implemented a multi-stage Scala Spark pipeline integrating TensorFlow Java API for entity recognition</li>
-                <li>Optimized API workflows with Kafka and Spark Streaming, achieving ~20x better processing performance</li>
-                <li>Developed token-based authentication for Azure SQL using Azure Active Directory to improve security</li>
-                <li>Partnered with leadership to define specs and deliver custom features for high-value enterprise clients</li>
-            </ul>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">Scala Developer</span> <span class="sep">|</span> <span class="exp-company">AwareAds</span> <span class="sep">|</span> <span class="exp-location">Toronto, Ontario</span>
-                </div>
-                <div class="exp-dates">Jun 2019 – Jul 2020</div>
-            </div>
-            <ul class="exp-bullets">
-                <li>Acted as the lead Scala developer of the Real-Time Bidding Platform (RTB)</li>
-                <li>Conducted technical audits of core services to identify scaling bottlenecks and define roadmaps</li>
-                <li>Redesigned and implemented all backend microservices using the Play Framework</li>
-                <li>Built an AdExchange simulator for stress testing infrastructure and simulating the RTB environment</li>
-                <li>Created testing suites using ScalaTest and custom scripts for data transformations</li>
-            </ul>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">Play Developer</span> <span class="sep">|</span> <span class="exp-company">Publicis Sapient</span> <span class="sep">|</span> <span class="exp-location">Toronto, Ontario</span>
-                </div>
-                <div class="exp-dates">Oct 2018 – Apr 2019</div>
-            </div>
-            <ul class="exp-bullets">
-                <li>Engineered features for Walmart.ca’s checkout flow using Play Framework to enhance user experience</li>
-                <li>Collaborated with a cross-functional team to integrate third-party services, ensuring seamless functionality</li>
-                <li>Deployed and maintained services using Jenkins and Walmart internal tools, ensuring reliability</li>
-                <li>Created automated test suites using ScalaTest and assisted in refactoring legacy codebase tests</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- SKILLS SECTION -->
-    <div class="resume-section">
-        <div class="section-title">Skills</div>
-        <div class="skills-list">
-            <div class="skills-row">
-                <div class="skills-label">Languages:</div>
-                <div class="skills-items">Scala <span class="pipe">|</span> Java <span class="pipe">|</span> SQL <span class="pipe">|</span> JavaScript</div>
-            </div>
-            <div class="skills-row">
-                <div class="skills-label">Frameworks & Libraries:</div>
-                <div class="skills-items">Akka <span class="pipe">|</span> Spark <span class="pipe">|</span> Kafka <span class="pipe">|</span> Flink <span class="pipe">|</span> Play Framework <span class="pipe">|</span> Spring Boot <span class="pipe">|</span> React</div>
-            </div>
-            <div class="skills-row">
-                <div class="skills-label">Cloud & DevOps:</div>
-                <div class="skills-items">GCP <span class="pipe">|</span> Azure <span class="pipe">|</span> AWS <span class="pipe">|</span> Docker <span class="pipe">|</span> Kubernetes <span class="pipe">|</span> Terraform <span class="pipe">|</span> Grafana <span class="pipe">|</span> Git <span class="pipe">|</span> Claude Code</div>
-            </div>
-            <div class="skills-row">
-                <div class="skills-label">Technical Leadership:</div>
-                <div class="skills-items">Cross-Functional Leadership <span class="pipe">|</span> Stakeholder Management <span class="pipe">|</span> Technical Translation <span class="pipe">|</span> Mentorship</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- EDUCATION SECTION -->
-    <div class="resume-section">
-        <div class="section-title">Education</div>
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title-line">
-                    <span class="exp-title">University of Waterloo</span> <span class="sep">|</span> <span class="exp-company">BASc. Computer Engineering</span> <span class="sep">|</span> <span class="exp-location">Waterloo, Ontario</span>
-                </div>
-                <div class="exp-dates">Sep 2013 – Apr 2018</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Image View (Fallback) -->
-<div class="image-view-container" id="img-resume-view">
-    <img src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume Image">
-</div>
+<!-- Resume Image View -->
+<img src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
 
 <!-- Retro Hint Badge -->
 <div class="konami-hint" id="konami-trigger" title="Click or enter Konami Code">
@@ -699,26 +287,6 @@
 </div>
 
 <script>
-// --- View Toggle Logic ---
-const btnHtmlView = document.getElementById('btn-html-view');
-const btnImgView = document.getElementById('btn-img-view');
-const htmlView = document.getElementById('html-resume-view');
-const imgView = document.getElementById('img-resume-view');
-
-btnHtmlView.addEventListener('click', () => {
-    btnHtmlView.classList.add('active');
-    btnImgView.classList.remove('active');
-    htmlView.style.display = 'block';
-    imgView.style.display = 'none';
-});
-
-btnImgView.addEventListener('click', () => {
-    btnImgView.classList.add('active');
-    btnHtmlView.classList.remove('active');
-    htmlView.style.display = 'none';
-    imgView.style.display = 'block';
-});
-
 // --- Web Audio API Synth ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
