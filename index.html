@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image and Download</title>
+    <title>Ariel Paulin — Resume</title>
     <style>
-        /* Center the content in the body */
         body {
             display: flex;
             justify-content: center;
@@ -13,10 +12,9 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
-            position: relative; /* For positioning the download button */
+            position: relative;
         }
 
-        /* Style for the image (Desktop view) */
         img {
             width: 65%;
             height: auto;
@@ -24,7 +22,6 @@
             margin: auto;
         }
 
-        /* Style for the download button */
         .download-button {
             position: fixed;
             top: 20px;
@@ -36,26 +33,24 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            text-decoration: none;
         }
 
         .download-button:hover {
             background-color: #45a049;
         }
 
-        /* Mobile view adjustments (under 600px) */
         @media (max-width: 600px) {
-            /* Adjust image to take full width of screen */
             img {
                 width: 100%;
                 max-width: 100%;
-                object-fit: contain; /* Keeps aspect ratio */
+                object-fit: contain;
             }
 
-            /* Style for the download button */
             .download-button {
                 padding: 12px 25px;
                 font-size: 18px;
-                position: absolute; /* Keeps button fixed at the top-right corner */
+                position: absolute;
                 top: 20px;
                 right: 20px;
             }
@@ -64,13 +59,11 @@
 </head>
 <body>
 
-<!-- The download button -->
-<a href="https://raw.githubusercontent.com/anpaulin/resume/master/ariel_paulin.pdf" download>
-    <button class="download-button">Download Resume</button>
+<a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-button">
+    Download Resume
 </a>
 
-<!-- The PNG image -->
-<img src="https://raw.githubusercontent.com/anpaulin/resume/master/ariel_paulin.png" alt="Ariel Paulin">
+<img src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
 
 </body>
 </html>
