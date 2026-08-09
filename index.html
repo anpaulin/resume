@@ -6,19 +6,18 @@
     <title>Ariel Paulin — Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0395DE;
-            --text-dark: #1a1a2e;
-            --text-muted: #555566;
+            --text-dark: #000000;
             --bg-light: #f0f2f5;
         }
 
         body {
-            font-family: 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background-color: var(--bg-light);
-            color: #222;
+            color: #000000;
             margin: 0;
             padding: 40px 16px 60px 16px;
             display: flex;
@@ -91,7 +90,7 @@
             background: #e2e8f0;
             padding: 3px;
             border-radius: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             margin-top: 10px;
         }
 
@@ -110,45 +109,45 @@
 
         .toggle-btn.active {
             background: #ffffff;
-            color: var(--text-dark);
+            color: #1a1a2e;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
-        /* Resume Document Box (HTML View) */
+        /* Resume Document Box (HTML View matched precisely to 8.5 x 11 PDF proportion) */
         .resume-document {
             background: #ffffff;
             width: 100%;
-            max-width: 850px;
-            padding: 50px 60px;
+            max-width: 820px;
+            min-height: 1060px;
+            padding: 42px 48px;
             box-sizing: border-box;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-radius: 4px;
-            line-height: 1.5;
+            border-radius: 2px;
+            line-height: 1.35;
             user-select: text;
         }
 
         .resume-header {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 6px;
         }
 
         .resume-header h1 {
-            font-size: 34px;
-            font-weight: 800;
-            margin: 0 0 6px 0;
-            color: #111;
-            letter-spacing: -0.02em;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 2px 0;
+            color: #000;
+            letter-spacing: -0.01em;
         }
 
         .contact-links {
-            font-size: 14px;
-            color: #444;
+            font-size: 12.5px;
+            color: #000;
         }
 
         .contact-links a {
-            color: #0395DE;
+            color: #000;
             text-decoration: none;
-            transition: color 0.15s ease;
         }
 
         .contact-links a:hover {
@@ -156,52 +155,50 @@
         }
 
         .contact-links .sep {
-            margin: 0 8px;
-            color: #888;
-            font-weight: bold;
+            margin: 0 4px;
+            color: #000;
+            font-weight: 400;
         }
 
         .summary-quote {
             font-style: italic;
-            font-size: 14.5px;
-            color: #444;
+            font-size: 12px;
+            color: #000;
             text-align: center;
-            margin: 12px 0 24px 0;
-            line-height: 1.45;
+            margin: 6px 0 14px 0;
+            line-height: 1.35;
         }
 
         /* Section Headings */
         .resume-section {
-            margin-bottom: 22px;
+            margin-bottom: 12px;
         }
 
         .section-title {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--primary-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            margin: 0 0 10px 0;
-            padding-bottom: 4px;
-            border-bottom: 1.5px solid var(--primary-blue);
+            text-transform: none;
+            margin: 0 0 6px 0;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--primary-blue);
         }
 
         /* Experience Entry */
         .exp-item {
-            margin-bottom: 18px;
+            margin-bottom: 8px;
         }
 
         .exp-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 4px;
-            flex-wrap: wrap;
+            margin-bottom: 2px;
         }
 
         .exp-title-line {
-            font-size: 15px;
-            color: #111;
+            font-size: 12.5px;
+            color: #000;
         }
 
         .exp-title {
@@ -215,61 +212,61 @@
         .exp-location {
             font-style: italic;
             color: var(--primary-blue);
-            font-size: 13.5px;
+            font-size: 11.5px;
         }
 
         .exp-dates {
-            font-size: 14px;
+            font-size: 12.5px;
             font-weight: 700;
-            color: #222;
+            color: #000;
             white-space: nowrap;
         }
 
         .exp-bullets {
-            margin: 4px 0 0 0;
-            padding-left: 20px;
+            margin: 2px 0 0 0;
+            padding-left: 18px;
         }
 
         .exp-bullets li {
-            font-size: 13.5px;
-            color: #333;
-            margin-bottom: 3px;
-            line-height: 1.45;
+            font-size: 12px;
+            color: #000;
+            margin-bottom: 2px;
+            line-height: 1.35;
         }
 
         /* Skills Table */
         .skills-list {
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 12px;
+            line-height: 1.45;
         }
 
         .skills-row {
             display: flex;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .skills-label {
             font-weight: 700;
-            width: 210px;
+            width: 175px;
             flex-shrink: 0;
-            color: #111;
+            color: #000;
         }
 
         .skills-items {
-            color: #333;
+            color: #000;
         }
 
         .skills-items .pipe {
-            color: #888;
-            margin: 0 6px;
-            font-weight: bold;
+            color: #000;
+            margin: 0 4px;
+            font-weight: 700;
         }
 
         /* Image View Container */
         .image-view-container {
             display: none;
             width: 100%;
-            max-width: 850px;
+            max-width: 820px;
         }
 
         .image-view-container img {
@@ -277,7 +274,7 @@
             height: auto;
             display: block;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-radius: 4px;
+            border-radius: 2px;
         }
 
         /* Retro Hint Badge */
@@ -421,7 +418,8 @@
             }
 
             .resume-document {
-                padding: 24px 18px;
+                padding: 20px 14px;
+                min-height: auto;
             }
 
             .exp-header {
@@ -431,7 +429,7 @@
 
             .skills-row {
                 flex-direction: column;
-                margin-bottom: 10px;
+                margin-bottom: 6px;
             }
 
             .skills-label {
