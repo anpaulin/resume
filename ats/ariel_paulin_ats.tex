@@ -66,11 +66,11 @@
   }
 }
 
-% Standard layout for ATS parsing
+% Standard layout for ATS parsing (Title + Company on line 1 so parsers associate them)
 \newcommand{\resumeSubheading}[4]{
   \vspace{4pt}\item
-    \textbf{#3}, #4 \\
-    \textit{#1}, #2
+    \textbf{#1} $|$ \textbf{#3} \hfill \textbf{#2} \\
+    \textit{#4}
   \vspace{2pt}
 }
 
