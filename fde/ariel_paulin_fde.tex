@@ -1,0 +1,146 @@
+%-------------------------
+% Forward Deployed Engineer Resume in Latex
+% Author : Ariel Paulin
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{lmodern}
+\input{glyphtounicode}
+
+% Include xcolor for color definitions
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Define the awesome-skyblue color
+\definecolor{awesome-skyblue}{HTML}{0395DE}
+
+\usepackage[sfdefault]{roboto}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textheight}{1.1in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\renewcommand{\sfdefault}{lmss}
+
+% Section title formatting for modern look
+\titleformat{\section}{
+  \vspace{-4pt}\sffamily\bfseries\raggedright\fontsize{14}{16}\selectfont\color{awesome-skyblue}
+}{}{0em}{}[\vspace{-2pt}\color{awesome-skyblue}\titlerule]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} \ $|$ \ \textbf{#3} \ $|$ \ \textit{\fontsize{9}{10}\selectfont \textcolor{awesome-skyblue}{#4}} & {\small \textbf{#2}} \\
+    \end{tabular*}\vspace{-2pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{2pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge Ariel Paulin} \\ \vspace{2pt}
+    \small{
+    \href{mailto:ariel.paulin@gmail.com}{ariel.paulin@gmail.com} $|$ 
+    \href{https://www.linkedin.com/in/arielpaulin}{linkedin.com/in/arielpaulin} $|$
+    \href{https://github.com/anpaulin}{github.com/anpaulin}
+    }
+    \vspace{2pt}
+\end{center}
+\begin{quote}
+    \vspace{2pt}
+    \small\textit{Results-oriented Forward Deployed Engineer and Technical Team Lead with 8+ years of experience designing high-scale JVM applications, deploying custom enterprise integrations, and leading client-facing engineering deployments.}
+    \vspace{-5pt}
+\end{quote}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \input{experience/a2x.tex}
+    \input{experience/cnh.tex}
+    \input{experience/datapassports.tex}
+    \input{experience/awareads.tex}
+    \input{experience/sapient.tex}
+  \resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Deployment \& Integration}: \quad GCP \ \textbf{\textbar} \ Azure \ \textbf{\textbar} \ AWS \ \textbf{\textbar} \ Docker \ \textbf{\textbar} \ Kubernetes \ \textbf{\textbar} \ Terraform \ \textbf{\textbar} \ Databricks \ \textbf{\textbar} \ REST APIs \\
+    \textbf{Core Systems \& Big Data}: \quad Scala \ \textbf{\textbar} \ Java \ \textbf{\textbar} \ Spark \ \textbf{\textbar} \ Flink \ \textbf{\textbar} \ Kafka \ \textbf{\textbar} \ Akka \ \textbf{\textbar} \ SQL \ \textbf{\textbar} \ Spring Boot \ \textbf{\textbar} \ Play Framework \\
+    \textbf{Client \& Technical Leadership}: \quad Forward Deployment \ \textbf{\textbar} \ Enterprise Integration \ \textbf{\textbar} \ Stakeholder Alignment \ \textbf{\textbar} \ Technical Translation
+  }}
+\end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \input{../education.tex}
+  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
