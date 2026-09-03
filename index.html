@@ -1121,23 +1121,23 @@
                 <p>Download in your preferred format.</p>
             </div>
             <div class="download-group">
-                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-pill primary">
+                <a href="standard/ariel_paulin.pdf" download class="download-pill primary">
                     ↓ PDF
                 </a>
-                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" download class="download-pill">
+                <a href="standard/ariel_paulin.png" download class="download-pill">
                     ↓ PNG
                 </a>
-                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.json" download class="download-pill">
+                <a href="standard/ariel_paulin.json" download class="download-pill">
                     { } JSON
                 </a>
-                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.txt" download class="download-pill">
+                <a href="standard/ariel_paulin.txt" download class="download-pill">
                     ≡ TXT
                 </a>
             </div>
         </div>
 
         <div class="resume-card">
-            <img class="resume-img" src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
+            <img class="resume-img" src="standard/ariel_paulin.png" alt="Ariel Paulin Resume">
         </div>
     </section>
 
@@ -1960,18 +1960,22 @@ function toggleTheme() {
 })();
 
 // --- Tab Switching & View Routing ---
-function switchTab(tabName) {
+function switchTab(tabName, updateHash = true) {
     document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
 
     if (tabName === 'resume') {
         document.getElementById('view-resume').classList.add('active');
         document.getElementById('tab-btn-resume').classList.add('active');
-        window.location.hash = 'resume';
+        if (updateHash && window.location.hash) {
+            history.pushState(null, '', window.location.pathname + window.location.search);
+        }
     } else if (tabName === 'articles') {
         document.getElementById('view-articles').classList.add('active');
         document.getElementById('tab-btn-articles').classList.add('active');
-        window.location.hash = 'articles';
+        if (updateHash) {
+            window.location.hash = 'articles';
+        }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1992,13 +1996,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const hash = window.location.hash.replace('#', '');
     if (hash === 'articles') {
-        switchTab('articles');
+        switchTab('articles', false);
     } else if (hash.startsWith('article-')) {
         let articleId = hash.replace('article-', '');
         if (articleId === 'askuity-systems-design') articleId = 'order-api-systems-design';
         openArticle(articleId);
     } else {
-        switchTab('resume');
+        switchTab('resume', false);
+        if (hash === 'resume') {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
     }
     initTocScrollSpy();
 });
@@ -2006,13 +2013,16 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash === 'articles') {
-        switchTab('articles');
+        switchTab('articles', false);
     } else if (hash.startsWith('article-')) {
         let articleId = hash.replace('article-', '');
         if (articleId === 'askuity-systems-design') articleId = 'order-api-systems-design';
         openArticle(articleId);
     } else if (hash === 'resume' || !hash) {
-        switchTab('resume');
+        switchTab('resume', false);
+        if (hash === 'resume') {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
     }
 });
 
