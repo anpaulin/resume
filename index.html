@@ -3,237 +3,1072 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ariel Paulin — Resume</title>
+    <title>Ariel Paulin | Systems Engineering & Articles</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            position: relative;
-            padding: 40px 0;
+        :root {
+            /* --- Light Theme Palette --- */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-focus: #0284c7;
+
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+
+            --accent-blue: #0284c7;
+            --accent-cyan: #0891b2;
+            --accent-emerald: #059669;
+            --accent-amber: #d97706;
+            --accent-rose: #e11d48;
+            --accent-purple: #7c3aed;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+
+            --header-bg: rgba(255, 255, 255, 0.92);
+            --diagram-bg: #f8fafc;
+
+            /* Tags */
+            --card-tag-bg: #e0f2fe;
+            --card-tag-color: #0369a1;
+            --card-tag-border: #bae6fd;
+            --card-tag-scala-bg: #fee2e2;
+            --card-tag-scala-color: #b91c1c;
+            --card-tag-scala-border: #fecaca;
+            --card-tag-arch-bg: #ecfdf5;
+            --card-tag-arch-color: #047857;
+            --card-tag-arch-border: #a7f3d0;
+
+            /* Code & Pre */
+            --pre-bg: #f8fafc;
+            --pre-border: #e2e8f0;
+            --pre-color: #0f172a;
+            --code-bg: #f1f5f9;
+            --code-color: #0369a1;
+            --code-border: #e2e8f0;
+
+            /* Quotes & Tables */
+            --quote-bg: #f0f9ff;
+            --quote-border: #0284c7;
+            --quote-color: #1e293b;
+            --table-th-bg: #f1f5f9;
+            --table-th-color: #0f172a;
+            --table-hover-bg: #f8fafc;
+
+            /* Callouts */
+            --callout-bg: #f0fdf4;
+            --callout-border: #bbf7d0;
+            --callout-color: #166534;
+            --callout-title: #15803d;
+
+            --callout-warn-bg: #fffbeb;
+            --callout-warn-border: #fde68a;
+            --callout-warn-color: #854d0e;
+            --callout-warn-title: #b45309;
+
+            --callout-danger-bg: #fef2f2;
+            --callout-danger-border: #fecaca;
+            --callout-danger-color: #991b1b;
+            --callout-danger-title: #dc2626;
+
+            /* Expandable Sections */
+            --expand-bg: #f8fafc;
+            --expand-border: #e2e8f0;
+            --expand-hover-bg: #f1f5f9;
+            --expand-open-bg: #ffffff;
+            --expand-open-border: #93c5fd;
+            --expand-summary-color: #0f172a;
+
+            /* Table of Contents */
+            --toc-bg: #ffffff;
+            --toc-border: #e2e8f0;
+            --toc-link-color: #475569;
+            --toc-link-hover-bg: #f1f5f9;
+            --toc-link-hover-color: #0f172a;
+            --toc-link-active-bg: #f0f9ff;
+            --toc-link-active-color: #0284c7;
+            --toc-link-active-border: #0284c7;
+
+            /* SVG Architecture Diagram Theme */
+            --svg-client-fill: #eff6ff;
+            --svg-client-stroke: #0284c7;
+            --svg-client-text: #0369a1;
+            --svg-pill-fill: #ffffff;
+            --svg-pill-stroke: #cbd5e1;
+            --svg-pill-text: #475569;
+            --svg-server-fill: #f0fdf4;
+            --svg-server-stroke: #059669;
+            --svg-server-title: #065f46;
+            --svg-server-box-fill: #ffffff;
+            --svg-server-box-stroke: #86efac;
+            --svg-server-box-text: #047857;
+            --svg-db-fill: #fefce8;
+            --svg-db-stroke: #d97706;
+            --svg-db-title: #92400e;
+            --svg-db-sub: #b45309;
+            --svg-db-box-fill: #ffffff;
+            --svg-db-box-stroke: #fde68a;
+            --svg-db-box-text: #b45309;
+        }
+
+        [data-theme="dark"] {
+            /* --- Dark Theme Palette (Refined Slate / Indigo Navy) --- */
+            --bg-primary: #0b0f17;
+            --bg-secondary: #111722;
+            --bg-tertiary: #172030;
+            --bg-card: #131b2a;
+            --bg-card-hover: #1a253a;
+            --border-color: #232f45;
+            --border-focus: #38bdf8;
+
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #8da2be;
+
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #fb7185;
+            --accent-purple: #c084fc;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+
+            --header-bg: rgba(11, 15, 23, 0.92);
+            --diagram-bg: #0d131f;
+
+            /* Tags */
+            --card-tag-bg: rgba(56, 189, 248, 0.12);
+            --card-tag-color: #38bdf8;
+            --card-tag-border: rgba(56, 189, 248, 0.25);
+            --card-tag-scala-bg: rgba(239, 68, 68, 0.12);
+            --card-tag-scala-color: #f87171;
+            --card-tag-scala-border: rgba(239, 68, 68, 0.25);
+            --card-tag-arch-bg: rgba(16, 185, 129, 0.12);
+            --card-tag-arch-color: #34d399;
+            --card-tag-arch-border: rgba(16, 185, 129, 0.25);
+
+            /* Code & Pre */
+            --pre-bg: #080c14;
+            --pre-border: #1e293b;
+            --pre-color: #e2e8f0;
+            --code-bg: rgba(56, 189, 248, 0.1);
+            --code-color: #38bdf8;
+            --code-border: rgba(56, 189, 248, 0.2);
+
+            /* Quotes & Tables */
+            --quote-bg: rgba(56, 189, 248, 0.06);
+            --quote-border: #38bdf8;
+            --quote-color: #e2e8f0;
+            --table-th-bg: #172030;
+            --table-th-color: #f8fafc;
+            --table-hover-bg: #1a253a;
+
+            /* Callouts */
+            --callout-bg: rgba(16, 185, 129, 0.08);
+            --callout-border: rgba(16, 185, 129, 0.3);
+            --callout-color: #d1fae5;
+            --callout-title: #34d399;
+
+            --callout-warn-bg: rgba(245, 158, 11, 0.08);
+            --callout-warn-border: rgba(245, 158, 11, 0.3);
+            --callout-warn-color: #fef3c7;
+            --callout-warn-title: #fbbf24;
+
+            --callout-danger-bg: rgba(239, 68, 68, 0.08);
+            --callout-danger-border: rgba(239, 68, 68, 0.3);
+            --callout-danger-color: #fecaca;
+            --callout-danger-title: #f87171;
+
+            /* Expandable Sections */
+            --expand-bg: #131b2a;
+            --expand-border: #232f45;
+            --expand-hover-bg: #1a253a;
+            --expand-open-bg: #172030;
+            --expand-open-border: rgba(56, 189, 248, 0.4);
+            --expand-summary-color: #f8fafc;
+
+            /* Table of Contents */
+            --toc-bg: #131b2a;
+            --toc-border: #232f45;
+            --toc-link-color: #94a3b8;
+            --toc-link-hover-bg: #1a253a;
+            --toc-link-hover-color: #f8fafc;
+            --toc-link-active-bg: rgba(56, 189, 248, 0.12);
+            --toc-link-active-color: #38bdf8;
+            --toc-link-active-border: #38bdf8;
+
+            /* SVG Architecture Diagram Theme */
+            --svg-client-fill: #141923;
+            --svg-client-stroke: #38bdf8;
+            --svg-client-text: #38bdf8;
+            --svg-pill-fill: #1e293b;
+            --svg-pill-stroke: #334155;
+            --svg-pill-text: #cbd5e1;
+            --svg-server-fill: #0f172a;
+            --svg-server-stroke: #60a5fa;
+            --svg-server-title: #ffffff;
+            --svg-server-box-fill: #1e293b;
+            --svg-server-box-stroke: #3b82f6;
+            --svg-server-box-text: #93c5fd;
+            --svg-db-fill: #064e3b;
+            --svg-db-stroke: #10b981;
+            --svg-db-title: #34d399;
+            --svg-db-sub: #6ee7b7;
+            --svg-db-box-fill: #022c22;
+            --svg-db-box-stroke: #10b981;
+            --svg-db-box-text: #d1fae5;
+        }
+
+        * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        img {
-            width: 65%;
-            height: auto;
-            display: block;
-            margin: auto;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            border-radius: 4px;
-        }
-
-        .download-container {
-            position: fixed;
-            top: 24px;
-            right: 24px;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
-            gap: 8px;
-            z-index: 100;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        .download-button {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 12px 20px;
-            border-radius: 10px;
+        /* --- Header & Navigation --- */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
             text-decoration: none;
-            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            color: var(--text-primary);
+        }
+
+        .brand-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(8, 145, 178, 0.2);
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            justify-content: center;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            line-height: 1.25;
+        }
+
+        .brand-tagline {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        .nav-tabs {
+            display: flex;
+            align-items: center;
+            background: var(--bg-tertiary);
+            padding: 5px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            gap: 6px;
+        }
+
+        .nav-btn {
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="dark"] .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-btn.active {
+            background: var(--bg-secondary);
+            color: var(--accent-blue);
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 7px 13px;
+            border-radius: 8px;
             cursor: pointer;
-            border: none;
-        }
-
-        .download-button.primary {
-            background-color: #1a1a2e;
-            color: #ffffff;
-        }
-
-        .download-button.primary:hover {
-            background-color: #16213e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .download-button.secondary {
-            background-color: #ffffff;
-            color: #1a1a2e;
-            border: 1px solid #d0d0d5;
-        }
-
-        .download-button.secondary:hover {
-            background-color: #f8f9fa;
-            border-color: #1a1a2e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .download-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Retro Hint Badge */
-        .konami-hint {
-            position: fixed;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            color: #888899;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 4px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
             user-select: none;
-            cursor: pointer;
-            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
-        .konami-hint:hover {
-            color: #0395DE;
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-1px);
         }
 
-        /* Space Invaders Game Overlay */
-        #game-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: #090a10;
-            overflow: hidden;
-            font-family: 'Press Start 2P', monospace;
-            color: #ffffff;
-        }
-
-        #game-canvas {
-            display: block;
+        /* --- Main Content Area --- */
+        main {
+            flex: 1;
+            max-width: 1200px;
             width: 100%;
-            height: 100%;
+            margin: 0 auto;
+            padding: 36px 28px 60px;
         }
 
-        .game-hud {
-            position: absolute;
-            top: 16px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 8px rgba(3, 149, 222, 0.8);
-            z-index: 10001;
-        }
-
-        .game-hud .score-val {
-            color: #00ffcc;
-        }
-
-        .game-hud .wave-val {
-            color: #ff0077;
-        }
-
-        .game-close-btn {
-            pointer-events: auto;
-            background: #ff0055;
-            color: #fff;
-            border: none;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 11px;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
-            transition: transform 0.15s ease;
-        }
-
-        .game-close-btn:hover {
-            transform: scale(1.08);
-            background: #ff2277;
-        }
-
-        /* Mobile Controls */
-        .mobile-controls {
+        .view-section {
             display: none;
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            justify-content: space-between;
-            padding: 0 24px;
-            z-index: 10002;
+            animation: fadeIn 0.25s ease forwards;
         }
 
-        .mobile-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 16px;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Resume View --- */
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .resume-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .resume-title-group h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin: 0;
+        }
+
+        .resume-title-group p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .download-group {
             display: flex;
             align-items: center;
-            justify-content: center;
-            user-select: none;
-            touch-action: manipulation;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .mobile-btn:active {
-            background: rgba(0, 255, 204, 0.4);
-            border-color: #00ffcc;
+        .download-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
         }
 
-        .mobile-fire-btn {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 0, 85, 0.3);
-            border-color: #ff0055;
+        .download-pill:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+        }
+
+        .download-pill.primary {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            border-color: #0284c7;
+            color: #ffffff;
+        }
+
+        .download-pill.primary:hover {
+            background: linear-gradient(135deg, #0369a1, #1d4ed8);
+            box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+        }
+
+        .resume-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .resume-img {
+            max-width: 850px;
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Articles Hub View --- */
+        .hub-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hub-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hub-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 750px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md), 0 0 16px rgba(2, 132, 199, 0.12);
+        }
+
+        .card-tag-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .card-tag {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: var(--card-tag-bg);
+            color: var(--card-tag-color);
+            border: 1px solid var(--card-tag-border);
         }
 
-        .mobile-fire-btn:active {
-            background: rgba(255, 0, 85, 0.7);
+        .card-tag.scala {
+            background: var(--card-tag-scala-bg);
+            color: var(--card-tag-scala-color);
+            border-color: var(--card-tag-scala-border);
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 70px 0 20px 0;
+        .card-tag.architecture {
+            background: var(--card-tag-arch-bg);
+            color: var(--card-tag-arch-color);
+            border-color: var(--card-tag-arch-border);
+        }
+
+        .card-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .card-excerpt {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .read-more-link {
+            font-weight: 600;
+            color: var(--accent-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- Article Reader View with Sticky Left Sidebar TOC --- */
+        .reader-layout {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 32px;
+            align-items: start;
+            position: relative;
+        }
+
+        .article-toc-sidebar {
+            position: sticky;
+            top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: var(--toc-bg);
+            border: 1px solid var(--toc-border);
+            border-radius: var(--radius-lg);
+            padding: 20px 16px;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 48px);
+            overflow-y: auto;
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .toc-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            padding-left: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: var(--toc-link-color);
+            text-decoration: none;
+            border-radius: 6px;
+            border-left: 2px solid transparent;
+            transition: all 0.15s ease;
+            line-height: 1.4;
+        }
+
+        .toc-link:hover {
+            color: var(--toc-link-hover-color);
+            background: var(--toc-link-hover-bg);
+            transform: translateX(2px);
+        }
+
+        .toc-link.active {
+            color: var(--toc-link-active-color);
+            font-weight: 600;
+            background: var(--toc-link-active-bg);
+            border-left-color: var(--toc-link-active-border);
+        }
+
+        .reader-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .back-nav:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            background: var(--bg-card-hover);
+            transform: translateX(-2px);
+        }
+
+        @media (max-width: 1024px) {
+            .reader-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .article-toc-sidebar {
+                position: static;
+                max-height: none;
+            }
+        }
+
+        .article-hero {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            background: transparent;
+        }
+
+        .article-hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin: 14px 0 8px 0;
+        }
+
+        .article-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 13px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .article-body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .article-body h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-body h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin: 24px 0 12px;
+        }
+
+        .article-body p {
+            margin-bottom: 16px;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 0 0 16px 24px;
+        }
+
+        .article-body li {
+            margin-bottom: 6px;
+        }
+
+        .article-body blockquote {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--quote-border);
+            padding: 14px 18px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: var(--quote-color);
+        }
+
+        .article-body blockquote p {
+            margin: 0;
+        }
+
+        /* Diagrams & Code Blocks */
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--pre-color);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--code-color);
+            border: 1px solid var(--code-border);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+            border: none;
+        }
+
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--table-th-bg);
+            color: var(--table-th-color);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--table-hover-bg);
+        }
+
+        /* Callout Box */
+        .callout {
+            background: var(--callout-bg);
+            border: 1px solid var(--callout-border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin: 24px 0;
+            color: var(--callout-color);
+        }
+
+        .callout.warning {
+            background: var(--callout-warn-bg);
+            border-color: var(--callout-warn-border);
+            color: var(--callout-warn-color);
+        }
+
+        .callout.danger {
+            background: var(--callout-danger-bg);
+            border-color: var(--callout-danger-border);
+            color: var(--callout-danger-color);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--callout-title);
+        }
+
+        .callout.warning .callout-title {
+            color: var(--callout-warn-title);
+        }
+
+        .callout.danger .callout-title {
+            color: var(--callout-danger-title);
+        }
+
+        /* Expandable Accordion Options */
+        details.expandable-option {
+            background: var(--expand-bg);
+            border: 1px solid var(--expand-border);
+            border-radius: var(--radius-md);
+            margin: 14px 0;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        details.expandable-option[open] {
+            border-color: var(--expand-open-border);
+            background: var(--expand-open-bg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        details.expandable-option summary {
+            cursor: pointer;
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--expand-summary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: background 0.15s ease, color 0.15s ease;
+            list-style: none;
+        }
+
+        details.expandable-option summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.expandable-option summary::after {
+            content: '›';
+            font-size: 20px;
+            line-height: 1;
+            color: var(--accent-cyan);
+            transition: transform 0.2s ease;
+        }
+
+        details.expandable-option[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details.expandable-option summary:hover {
+            background: var(--expand-hover-bg);
+            color: var(--accent-blue);
+        }
+
+        details.expandable-option .option-content {
+            padding: 4px 20px 20px 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            background: var(--expand-open-bg);
+        }
+
+        details.expandable-option.danger {
+            border-color: var(--callout-danger-border);
+            background: var(--callout-danger-bg);
+        }
+
+        details.expandable-option.danger summary {
+            color: var(--callout-danger-title);
+        }
+
+        details.expandable-option.danger[open] {
+            border-color: var(--accent-rose);
+        }
+
+        details.expandable-option .option-content p {
+            margin: 12px 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            padding: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 14px 18px;
+                gap: 14px;
             }
 
-            img {
-                width: 95%;
-                max-width: 100%;
-                object-fit: contain;
-            }
-
-            .download-container {
-                top: 12px;
-                right: 12px;
-                left: 12px;
+            .brand {
                 justify-content: center;
-                gap: 6px;
             }
 
-            .download-button {
-                padding: 10px 12px;
-                font-size: 12px;
+            .nav-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 8px 12px;
+            }
+
+            .resume-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reader-container {
+                padding: 24px 18px;
+            }
+
+            .article-hero h1 {
+                font-size: 24px;
             }
 
             .mobile-controls {
@@ -244,608 +1079,973 @@
 </head>
 <body>
 
-<!-- Download Actions Bar -->
-<div class="download-container">
-    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-button primary">
-        PDF
-    </a>
-    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" download class="download-button secondary">
-        PNG
-    </a>
-    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.json" download class="download-button secondary">
-        JSON
-    </a>
-    <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.txt" download class="download-button secondary">
-        TXT
-    </a>
-</div>
+<!-- Global Header -->
+<header class="site-header">
+    <div class="header-container">
+        <a href="#resume" class="brand" onclick="switchTab('resume')">
+            <img class="brand-avatar" src="profile.jpg" alt="Ariel Paulin">
+            <div class="brand-text">
+                <span class="brand-name">Ariel Paulin</span>
+                <span class="brand-tagline">Systems & Software Engineering</span>
+            </div>
+        </a>
 
-<!-- Resume Image View -->
-<img src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-btn active" id="tab-btn-resume" onclick="switchTab('resume')">
+                <span>📄</span> Resume
+            </button>
+            <button class="nav-btn" id="tab-btn-articles" onclick="switchTab('articles')">
+                <span>📝</span> Articles & Notes
+            </button>
+        </nav>
 
-<!-- Retro Hint Badge -->
-<div class="konami-hint" id="konami-trigger" title="Click or enter Konami Code">
-    🎮 ↑ ↑ ↓ ↓ ← → ← → B A
-</div>
-
-<!-- Space Invaders Overlay -->
-<div id="game-overlay">
-    <div class="game-hud">
-        <div>SCORE: <span id="game-score" class="score-val">0</span></div>
-        <div>WAVE: <span id="game-wave" class="wave-val">1</span></div>
-        <button class="game-close-btn" id="game-exit-btn">EXIT [ESC]</button>
-    </div>
-    <canvas id="game-canvas"></canvas>
-
-    <div class="mobile-controls">
-        <div style="display: flex; gap: 12px;">
-            <div class="mobile-btn" id="m-left">←</div>
-            <div class="mobile-btn" id="m-right">→</div>
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light / Dark Mode" aria-label="Toggle Light / Dark Mode">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Dark</span>
+            </button>
         </div>
-        <div class="mobile-btn mobile-fire-btn" id="m-fire">FIRE</div>
     </div>
-</div>
+</header>
+
+<!-- Main Container -->
+<main>
+
+    <!-- 1. RESUME VIEW -->
+    <section id="view-resume" class="view-section active">
+        <div class="resume-header">
+            <div class="resume-title-group">
+                <h1>Resume</h1>
+                <p>Download in your preferred format.</p>
+            </div>
+            <div class="download-group">
+                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.pdf" download class="download-pill primary">
+                    ↓ PDF
+                </a>
+                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" download class="download-pill">
+                    ↓ PNG
+                </a>
+                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.json" download class="download-pill">
+                    { } JSON
+                </a>
+                <a href="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.txt" download class="download-pill">
+                    ≡ TXT
+                </a>
+            </div>
+        </div>
+
+        <div class="resume-card">
+            <img class="resume-img" src="https://raw.githubusercontent.com/anpaulin/resume/master/standard/ariel_paulin.png" alt="Ariel Paulin Resume">
+        </div>
+    </section>
+
+    <!-- 2. ARTICLES HUB VIEW -->
+    <section id="view-articles" class="view-section">
+        <div class="hub-header">
+            <h1><span>📝</span> Engineering Study Notes & Articles</h1>
+            <p>In-depth architectural analyses, systems design deep-dives, and performance engineering notes written during ongoing study and system modeling.</p>
+        </div>
+
+        <div class="articles-grid">
+            <!-- Article Card 1 -->
+            <div class="article-card" onclick="openArticle('order-api-systems-design')">
+                <div>
+                    <div class="card-tag-row">
+                        <span class="card-tag">#SystemsDesign</span>
+                        <span class="card-tag architecture">#EventSourcing</span>
+                        <span class="card-tag">#WAL</span>
+                        <span class="card-tag scala">#Scala3</span>
+                    </div>
+                    <h2 class="card-title">From 0 to Scale</h2>
+                    <p class="card-excerpt">
+                        A simple example of scaling an event sourcing system. Deconstructing an order service from single-node transactional CRUD to high-throughput Write-Ahead Logging (WAL), in-memory projections, and group commit based on <code>anpaulin/order-api</code>.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span>12 min read • Systems Study</span>
+                    <span class="read-more-link">Read Deep Dive →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ARTICLE READER VIEW -->
+    <section id="view-reader" class="view-section">
+        <div class="reader-layout">
+            <!-- Left Sticky Sidebar Table of Contents -->
+            <aside class="article-toc-sidebar">
+                <button class="back-nav" onclick="switchTab('articles')" style="width: 100%; justify-content: flex-start; margin-bottom: 6px;">
+                    ← Back to Articles
+                </button>
+
+                <div class="toc-header">
+                    <span>📑 Table of Contents</span>
+                </div>
+
+                <nav class="toc-list">
+                    <a href="#sec-1-baseline" class="toc-link active">1. Baseline Monolithic CRUD</a>
+                    <a href="#sec-2-commit-boundary" class="toc-link">2. Network & Commit Boundary</a>
+                    <a href="#sec-3-cap-theorem" class="toc-link">3. The CAP Theorem</a>
+                    <a href="#sec-4-master-slave" class="toc-link">4. Primary-Replica Scaling</a>
+                    <a href="#sec-5-event-sourcing" class="toc-link">5. Event Sourcing & WAL</a>
+                    <a href="#sec-6-performance" class="toc-link">6. Performance Hurdles</a>
+                    <a href="#sec-7-summary" class="toc-link">7. Architecture Rules</a>
+                </nav>
+            </aside>
+
+            <!-- Main Article Reader Container -->
+            <div class="reader-container">
+                <!-- Article Content: Order API Systems Design -->
+                <article id="article-order-api-systems-design">
+                    <header class="article-hero">
+                        <div class="card-tag-row" style="margin-bottom: 12px;">
+                            <span class="card-tag">#SystemsDesign</span>
+                            <span class="card-tag architecture">#EventSourcing</span>
+                            <span class="card-tag">#WAL</span>
+                            <span class="card-tag scala">#Scala3</span>
+                            <span class="card-tag">#PlayFramework</span>
+                        </div>
+                        <h1>From 0 to Scale</h1>
+                        <p class="article-subtitle">A simple example of scaling an event sourcing system</p>
+                        <div class="article-meta">
+                            <span><strong>Author:</strong> Ariel Paulin</span>
+                            <span>•</span>
+                            <span><strong>Topic:</strong> Distributed Systems & Concurrency</span>
+                            <span>•</span>
+                            <span><strong>Reference:</strong> <a href="https://github.com/anpaulin/order-api" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">github.com/anpaulin/order-api</a></span>
+                        </div>
+                    </header>
+
+                    <div class="article-body">
+                        <blockquote>
+                            <p>The complete microservice codebase and implementation for this system can be found on GitHub at <a href="https://github.com/anpaulin/order-api" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">github.com/anpaulin/order-api</a>.</p>
+                        </blockquote>
+
+                        <h2 id="sec-1-baseline">1. The Baseline Architecture (Stage 0: Monolithic CRUD)</h2>
+                    <p>Let's start off with the simplest system possible:</p>
+                    <ul>
+                        <li><strong>Basic RESTful Service:</strong> Handles the core operations to create, query, update, and delete orders.</li>
+                        <li><strong>Relational Storage:</strong> The entire state of the system is stored in a single relational database (PostgreSQL, MySQL, etc.).</li>
+                        <li><strong>Transactional Writes:</strong> All write operations (Create, Update, Delete) are executed as database transactions.</li>
+                        <li><strong>Core Guarantee:</strong> Once a write completes successfully, any subsequent read sees that latest data.</li>
+                    </ul>
+
+                    <!-- Monolithic CRUD Vector Diagram -->
+                    <div class="diagram-wrapper" style="margin: 28px 0; background: var(--diagram-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px 16px; display: flex; flex-direction: column; align-items: center;">
+                        <svg viewBox="0 0 760 220" width="100%" height="100%" style="max-width: 760px; font-family: 'Inter', system-ui, sans-serif;">
+                            <defs>
+                                <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e293b" />
+                                    <stop offset="100%" stop-color="#0f172a" />
+                                </linearGradient>
+                                <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e3a8a" />
+                                    <stop offset="100%" stop-color="#172554" />
+                                </linearGradient>
+                                <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#064e3b" />
+                                    <stop offset="100%" stop-color="#022c22" />
+                                </linearGradient>
+                                <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 1, 8 4, 0 7" fill="#38bdf8" />
+                                </marker>
+                                <marker id="arrowEmerald" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 1, 8 4, 0 7" fill="#10b981" />
+                                </marker>
+                            </defs>
+
+                            <!-- Node 1: Client -->
+                            <rect x="20" y="45" width="180" height="130" rx="12" fill="url(#clientGrad)" stroke="#38bdf8" stroke-width="2" />
+                            <text x="110" y="78" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="700">📱 Clients / Consumers</text>
+                            <rect x="36" y="96" width="148" height="24" rx="6" fill="#1e293b" />
+                            <text x="110" y="112" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'JetBrains Mono', monospace">POST /orders</text>
+                            <rect x="36" y="128" width="148" height="24" rx="6" fill="#1e293b" />
+                            <text x="110" y="144" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="'JetBrains Mono', monospace">GET /orders/:id</text>
+
+                            <!-- Arrow 1: Client to Server -->
+                            <path d="M 200 95 L 270 95" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#arrowCyan)" />
+                            <text x="235" y="86" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="600">REST / JSON</text>
+
+                            <path d="M 270 125 L 200 125" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4" fill="none" marker-end="url(#arrowCyan)" />
+                            <text x="235" y="140" text-anchor="middle" fill="#94a3b8" font-size="10">200 / 201 OK</text>
+
+                            <!-- Node 2: Monolith App Server -->
+                            <rect x="280" y="40" width="220" height="140" rx="12" fill="url(#serverGrad)" stroke="#60a5fa" stroke-width="2" />
+                            <text x="390" y="68" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">⚙️ Monolithic Order Server</text>
+                            
+                            <rect x="296" y="88" width="188" height="28" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1" />
+                            <text x="390" y="106" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">REST Controller</text>
+                            
+                            <rect x="296" y="126" width="188" height="28" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1" />
+                            <text x="390" y="144" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">Synchronous Domain Logic</text>
+
+                            <!-- Arrow 2: Server to DB -->
+                            <path d="M 500 95 L 560 95" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrowEmerald)" />
+                            <text x="530" y="86" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">Write</text>
+
+                            <path d="M 560 125 L 500 125" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4" fill="none" marker-end="url(#arrowEmerald)" />
+                            <text x="530" y="142" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Read</text>
+
+                            <!-- Node 3: Relational DB -->
+                            <rect x="570" y="40" width="170" height="140" rx="12" fill="url(#dbGrad)" stroke="#10b981" stroke-width="2" />
+                            <text x="655" y="70" text-anchor="middle" fill="#34d399" font-size="14" font-weight="700">🗄️ Relational Database</text>
+                            <text x="655" y="88" text-anchor="middle" fill="#6ee7b7" font-size="11">(PostgreSQL / MySQL)</text>
+
+                            <rect x="585" y="104" width="140" height="26" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+                            <text x="655" y="121" text-anchor="middle" fill="#d1fae5" font-size="11" font-family="'JetBrains Mono', monospace">BEGIN ... COMMIT</text>
+
+                            <rect x="585" y="138" width="140" height="26" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+                            <text x="655" y="155" text-anchor="middle" fill="#d1fae5" font-size="10" font-family="'JetBrains Mono', monospace">orders (id, status...)</text>
+                        </svg>
+                        <span style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">Figure 1: Baseline Single-Node Monolithic CRUD Architecture with ACID Transaction Boundaries</span>
+                    </div>
+
+                    <p>
+                        Straightforward, simple, and concise. But even in this basic system, subtle race conditions and scaling bottlenecks emerge as soon as concurrent clients interact with the service.
+                    </p>
+
+                    <h2 id="sec-2-commit-boundary">2. Network & In-Flight Timing: The Commit Boundary</h2>
+                    <p>
+                        Even in a basic single-server setup, network timing anomalies happen because <strong>a write is never a single instantaneous moment</strong>. 
+                    </p>
+                    <p>
+                        A write operation involves multiple steps wrapped inside a database transaction: parsing the payload, validating business rules, acquiring connection sockets, executing SQL <code>INSERT</code>/<code>UPDATE</code>, writing to disk, and finally issuing a <code>COMMIT</code>.
+                    </p>
+                    <p>
+                        Because of this transaction window, if a client fires a <strong>Write (Create)</strong> and immediately fires a <strong>Read (Query)</strong>, the fast read query can arrive, execute, and return <em>before</em> the write transaction has fully committed, even if the write was dispatched first!
+                    </p>
+
+                    <!-- Vector Timeline Diagram for Network / In-Flight Race -->
+                    <div class="diagram-wrapper" style="margin: 24px 0; background: var(--diagram-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px 16px; display: flex; flex-direction: column; align-items: center;">
+                        <svg viewBox="0 0 740 250" width="100%" height="100%" style="max-width: 740px; font-family: 'Inter', system-ui, sans-serif;">
+                            <defs>
+                                <linearGradient id="writeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#1d4ed8" />
+                                </linearGradient>
+                                <linearGradient id="txGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#334155" />
+                                    <stop offset="100%" stop-color="#1e293b" />
+                                </linearGradient>
+                                <linearGradient id="readGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0284c7" />
+                                    <stop offset="100%" stop-color="#0369a1" />
+                                </linearGradient>
+                                <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                                    <polygon points="0 0, 6 3, 0 6" fill="#64748b" />
+                                </marker>
+                            </defs>
+
+                            <!-- Timeline Axis -->
+                            <line x1="60" y1="210" x2="700" y2="210" stroke="#334155" stroke-width="2" marker-end="url(#arrowHead)" />
+                            <text x="700" y="230" text-anchor="end" fill="#64748b" font-size="11" font-weight="600">TIME ──►</text>
+
+                            <!-- Time Labels -->
+                            <text x="100" y="230" text-anchor="middle" fill="#64748b" font-size="11" font-family="'JetBrains Mono', monospace">t₀: Fire Write</text>
+                            <text x="210" y="230" text-anchor="middle" fill="#64748b" font-size="11" font-family="'JetBrains Mono', monospace">t₁: Fire Read</text>
+                            <text x="370" y="230" text-anchor="middle" fill="#64748b" font-size="11" font-family="'JetBrains Mono', monospace">t₂: Read Runs</text>
+                            <text x="560" y="230" text-anchor="middle" fill="#10b981" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="700">t₃: Write COMMITS</text>
+
+                            <!-- Track 1: Write Operation -->
+                            <text x="60" y="42" fill="#38bdf8" font-size="12" font-weight="700">1. WRITE: POST /orders</text>
+                            
+                            <!-- Write Request Sent -->
+                            <rect x="80" y="55" width="80" height="30" rx="6" fill="url(#writeGrad)" />
+                            <text x="120" y="74" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">POST Sent</text>
+                            
+                            <!-- Transaction Active Span -->
+                            <rect x="180" y="50" width="380" height="40" rx="8" fill="url(#txGrad)" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4" />
+                            <text x="370" y="75" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">⏳ Transaction In-Progress: (Validate ➔ Lock ➔ INSERT ➔ Flush)</text>
+                            
+                            <!-- Commit Point -->
+                            <rect x="570" y="50" width="120" height="40" rx="8" fill="#065f46" stroke="#10b981" stroke-width="2" />
+                            <text x="630" y="74" text-anchor="middle" fill="#a7f3d0" font-size="12" font-weight="700">✓ COMMIT</text>
+
+                            <!-- Track 2: Read Operation -->
+                            <text x="60" y="122" fill="#38bdf8" font-size="12" font-weight="700">2. READ: GET /orders/:id</text>
+
+                            <!-- Read Request Sent -->
+                            <rect x="190" y="135" width="80" height="30" rx="6" fill="url(#readGrad)" />
+                            <text x="230" y="154" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">GET Sent</text>
+
+                            <!-- Read Executes during uncommitted window -->
+                            <rect x="290" y="130" width="200" height="40" rx="8" fill="#450a0a" stroke="#ef4444" stroke-width="1.5" />
+                            <text x="390" y="154" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">❌ SELECT: Returns 404 / Old Data</text>
+
+                            <!-- Vertical connecting indicator -->
+                            <line x1="390" y1="92" x2="390" y2="128" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3" />
+
+                            <!-- Safe read after commit -->
+                            <rect x="580" y="130" width="120" height="40" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+                            <text x="640" y="154" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="600">✓ Latest Data</text>
+                        </svg>
+                        <span style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Figure 2: The In-Flight Race Window: Reads only see data once a transaction successfully COMMITS.</span>
+                    </div>
+
+                    <div class="callout warning">
+                        <div class="callout-title">⚠️ It's All About the COMMIT Boundary</div>
+                        <p>Under standard relational isolation (<code>READ COMMITTED</code>), writes remain invisible to other queries until the final <code>COMMIT</code> succeeds. Only <strong>after a write is fully completed</strong> does the database guarantee that subsequent reads return the most up-to-date state.</p>
+                    </div>
+
+                    <!-- Expandable Database Design Aside Deep-Dive -->
+                    <details id="sec-aside-db-design" class="expandable-option" style="margin: 32px 0; border: 1px solid var(--border-color);">
+                        <summary style="font-size: 17px; padding: 20px 24px; color: var(--accent-cyan);">
+                            <span>📌 Aside: Database & Concurrency Design (Schema, Invariants & Lost Updates)</span>
+                        </summary>
+                        <div class="option-content" style="padding: 10px 24px 24px 24px;">
+                            <p>
+                                Beyond network timing, a separate and deeper challenge lies in <strong>database schema and transactional concurrency design</strong>.
+                            </p>
+
+                            <div class="callout" style="border-left: 4px solid var(--accent-emerald); margin: 16px 0;">
+                                <div class="callout-title">💡 The Reality: For 95% of Applications, A Good Relational Schema is All You Need</div>
+                                <p>
+                                    Before exploring advanced scaling, it is worth stating plainly: <strong>for the vast majority of systems, a single ACID-compliant relational database with a normalized schema will completely suffice.</strong>
+                                </p>
+                                <p>
+                                    Instead of forcing all state into a single mutable row, you simply normalize the domain into separate tables:
+                                </p>
+                                <ul>
+                                    <li><code>orders</code> (id, user_id, price, status, created_at)</li>
+                                    <li><code>refunds</code> (id, <code>order_id UNIQUE</code>, refund_amount, reason, created_at)</li>
+                                    <li><code>price_adjustments</code> (id, order_id, old_price, new_price, modified_by, created_at)</li>
+                                </ul>
+                                <p>
+                                    A standard database transaction wraps the operation:
+                                </p>
+                                <pre><code>BEGIN;
+  INSERT INTO refunds (order_id, refund_amount) VALUES (123, 100.00);
+  UPDATE orders SET status = 'REFUNDED' WHERE id = 123;
+COMMIT;</code></pre>
+                                <p>
+                                    The <code>UNIQUE</code> constraint on <code>refunds(order_id)</code> physically prevents double-refunds at the database engine level, rollbacks are built-in, and you get complete auditability for free.
+                                </p>
+                            </div>
+
+                            <h3>The Single-Row Mutation Dilemma</h3>
+                            <p>
+                                Concurrency traps emerge when systems store all operational state inside a <strong>single mutable row</strong> (e.g. updating <code>status</code> and <code>price</code> on the same row):
+                            </p>
+                            <pre><code>CREATE TABLE orders (
+    id          BIGSERIAL PRIMARY KEY,
+    status      VARCHAR(32) NOT NULL DEFAULT 'ACTIVE', -- ACTIVE, REFUNDED, CANCELLED
+    price       NUMERIC(10, 2) NOT NULL,
+    currency    VARCHAR(3) NOT NULL DEFAULT 'USD',
+    created_at  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+                            <div class="callout" style="border-left: 4px solid var(--accent-cyan); margin: 20px 0;">
+                                <div class="callout-title">💡 Effective Database Design vs. Scaling Concerns</div>
+                                <p>
+                                    It is vital to understand the relationship between <strong>database design</strong> and <strong>scaling</strong>:
+                                </p>
+                                <ul>
+                                    <li><strong>Schema-Level Invariants:</strong> Use exact financial precision (e.g. <code>NUMERIC/DECIMAL</code> over floating-point <code>FLOAT</code>) and explicit constraints (e.g. <code>CHECK (price >= 0)</code>) to guarantee baseline integrity at rest.</li>
+                                    <li><strong>Scaling Without Correctness is Just Fast Corruption:</strong> High throughput is meaningless if concurrent requests enter an invalid state (e.g. charging refunded orders or double-spending). While some domains can tolerate eventual consistency (such as view counts or likes), transactional systems (orders, billing, inventory) must always remain accurate and valid without exception.</li>
+                                    <li><strong>The Core Challenge:</strong> Many common scaling techniques (read replicas, caches, async message queues, and sharding) introduce replication lag and out-of-order anomalies that actively threaten correctness unless your database and concurrency architecture explicitly protects against them.</li>
+                                </ul>
+                            </div>
+
+                            <h3>The Concurrent Mutation Race</h3>
+                            <p>
+                                Assume a situation where two simultaneous changes are placed to our system for a single order by two different departments:
+                            </p>
+                            <ul>
+                                <li><strong>Customer Service:</strong> Tries to refund the order (transitioning <code>status</code> to <code>REFUNDED</code>).</li>
+                                <li><strong>Billing Department:</strong> Tries to adjust the order price (e.g. applying a retroactive fee or discount).</li>
+                            </ul>
+                            <p>
+                                <strong>Our Basic Business Rule:</strong> We shouldn't change the price of orders that are already refunded (we only update the price if the order is currently <code>ACTIVE</code>).
+                            </p>
+                            <p>
+                                In the simplest implementation, our application performs a <strong>READ</strong> and a <strong>WRITE</strong> operation separately: first querying the database to fetch the row (<code>SELECT</code>), evaluating the business rule in application memory (<code>if (status == "ACTIVE")</code>), and then issuing a separate database write (<code>UPDATE</code>).
+                            </p>
+                            <p>
+                                Because the read and the write are two separate operations with a gap in between, there are <strong>4 possible execution scenarios</strong> when two departments act at the same time:
+                            </p>
+                            <ol class="scenario-list" style="display: flex; flex-direction: column; gap: 16px; margin: 24px 0; padding-left: 22px;">
+                                <li>
+                                    <strong>CS finishes completely first:</strong> CS reads order as <code>ACTIVE</code> ➔ marks it as <code>REFUNDED</code>. Billing then reads order as <code>REFUNDED</code>, fails condition check, and makes no changes.
+                                    <div style="font-size: 13.5px; color: var(--accent-emerald); margin-top: 4px;">✓ <strong>Correct outcome:</strong> Order is refunded at original price; Billing is safely rejected.</div>
+                                </li>
+                                <li>
+                                    <strong>Billing finishes completely first:</strong> Billing reads order as <code>ACTIVE</code> ➔ updates the price to $120. CS then reads order as <code>ACTIVE</code> (at the new price) ➔ marks it as <code>REFUNDED</code>.
+                                    <div style="font-size: 13.5px; color: var(--accent-amber); margin-top: 4px;">* <strong>Order refunded with new price:</strong> While we didn't strictly break our database rule on paper, from a business perspective it still looks like we did (customer gets refunded an altered amount, NOT GOOD).</div>
+                                </li>
+                                <li>
+                                    <strong>Interleaved (CS WRITES before BILLING WRITES):</strong> CS reads order as <code>ACTIVE</code>. Billing reads order as <code>ACTIVE</code>. CS writes and marks order as <code>REFUNDED</code>. Billing then writes and updates the price based on its stale read.
+                                    <div style="font-size: 13.5px; color: var(--accent-rose); margin-top: 4px;">🚨 <strong>Direct rule violation:</strong> Billing updated the price of an already-refunded order!</div>
+                                </li>
+                                <li>
+                                    <strong>Interleaved (BILLING WRITES before CS WRITES):</strong> Billing reads order as <code>ACTIVE</code>. CS reads order as <code>ACTIVE</code> (seeing original $100 price). Billing writes and updates price to $120. CS then writes and marks order as <code>REFUNDED</code>.
+                                    <div style="font-size: 13.5px; color: var(--accent-amber); margin-top: 4px;">* <strong>CS authorized $100, DB recorded $120:</strong> While the SQL write technically passed the <code>ACTIVE</code> check, the customer gets refunded money CS never authorized (NOT GOOD).</div>
+                                </li>
+                            </ol>
+
+                            <p style="font-size: 13.5px; color: var(--text-muted); font-style: italic; margin: 12px 0 20px 0;">
+                                * <strong>Key Takeaway:</strong> In Scenarios 2 and 4, even though we technically didn't break our database condition check at the exact millisecond of the write, it still looks like we broke our business rules to both the customer and finance team.
+                            </p>
+
+                            <h3>How Do We Design the DB to Prevent This?</h3>
+                            <p>To prevent concurrent lost updates and protect our business rules on mutable rows, we can explore four architectural patterns, ordered from heaviest hammer to the cleanest standard:</p>
+
+                            <!-- Option 1: Serializable -->
+                            <details class="expandable-option">
+                                <summary>Option 1: The Database Hammer: Serializable Isolation Level</summary>
+                                <div class="option-content">
+                                    <p>Wrap the read and update inside a transaction with the strictest database isolation level:</p>
+                                    <pre><code>SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN;
+SELECT status, price FROM orders WHERE id = :id;
+-- Perform check in application code...
+UPDATE orders SET price = :new_price WHERE id = :id;
+COMMIT;</code></pre>
+                                    <p><strong>How it works:</strong> The database engine automatically tracks what data transactions read. If two transactions concurrently read and try to modify the same order, the database aborts the second one with <code>ERROR: 40001 serialization_failure</code>.</p>
+                                    <p><strong>Trade-off:</strong> Heavy performance overhead, high transaction abort rates under load, and requires complex application retry loops.</p>
+                                </div>
+                            </details>
+
+                            <!-- Option 2: Pessimistic Locking -->
+                            <details class="expandable-option">
+                                <summary>Option 2: Manual Row Locking: Pessimistic Locking (SELECT FOR UPDATE)</summary>
+                                <div class="option-content">
+                                    <p>Screw it, let's just lock the entire row manually from the start, read, perform our check, update, and commit:</p>
+                                    <pre><code>BEGIN;
+SELECT * FROM orders WHERE id = :id FOR UPDATE;
+
+-- Application checks: if (order.status != "ACTIVE") ROLLBACK;
+UPDATE orders SET price = :new_price WHERE id = :id;
+COMMIT;</code></pre>
+                                    <p><strong>How it works:</strong> As soon as the first transaction executes <code>SELECT ... FOR UPDATE</code>, the database locks the row. The second transaction is physically blocked from reading or writing until the first transaction commits.</p>
+                                    <p><strong>Trade-off:</strong> Eliminates races, but holds database connections open, serializes all traffic on that row, and drastically reduces throughput.</p>
+                                </div>
+                            </details>
+
+                            <!-- Option 3: Atomic State Guard -->
+                            <details class="expandable-option">
+                                <summary>Option 3: Atomic State Guard (Fusing Check & Write into the UPDATE)</summary>
+                                <div class="option-content">
+                                    <p>Instead of a separate <code>SELECT</code> and subsequent <code>UPDATE</code>, fuse the check and write directly into a single SQL statement:</p>
+                                    <pre><code>UPDATE orders 
+SET price = :new_price 
+WHERE id = :id AND status = 'ACTIVE';</code></pre>
+                                    <p><strong>How it works:</strong> The database automatically acquires an exclusive row lock for the single statement. If CS is updating first, Billing's update blocks and waits. Once CS commits (status becomes <code>REFUNDED</code>), Billing wakes up, re-evaluates <code>status = 'ACTIVE'</code> against the new row, and modifies <code>0 rows</code> (rejected with <code>409 Conflict</code>).</p>
+                                    <div class="callout" style="border-left: 4px solid var(--accent-cyan); margin-top: 14px;">
+                                        <div class="callout-title">💡 HINT: The Remaining Flaw</div>
+                                        <p>If Billing acquires the lock <em>before</em> Customer Service, the price still silently changes to $120 right before the refund commits. We solve this semantic dilemma with <strong>Event Sourcing & Ledger-style transactions</strong> (covered in Section 3 below)!</p>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- Option 4: OCC -->
+                            <details class="expandable-option" open>
+                                <summary>Option 4: The Clean Standard: Optimistic Concurrency Control (OCC with Versioning)</summary>
+                                <div class="option-content">
+                                    <p>Add a monotonically increasing <code>version</code> column to the table. When updating, include the version you read in the <code>WHERE</code> clause:</p>
+                                    <pre><code>UPDATE orders 
+SET price = :new_price, version = version + 1 
+WHERE id = :id AND version = :expected_version;</code></pre>
+                                    <p><strong>Why this is so clean:</strong> We don't hold any heavy locks. If either department commits their update first, the version increments (<code>v1 ➔ v2</code>). The second update fails (<code>0 rows updated</code>) no matter which department sent it! The application detects <code>0 rows</code> and returns <code>409 Conflict</code>, guaranteeing we know that <em>something changed in this mutable row</em> before proceeding.</p>
+
+                                    <div class="callout warning" style="margin-top: 14px;">
+                                        <div class="callout-title">⚠️ The Inherent Limitation of Mutable Rows</div>
+                                        <p>While OCC successfully stops Billing from silently updating the price to $120 behind Customer Service's back (because CS's initial <code>v1</code> update fails once Billing bumps it to <code>v2</code>), Customer Service still has the option of pushing another update. If they simply refresh and click refund again, we end up right back in the same bad state: <strong>a single mutable row that says we refunded $120!</strong></p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+
+                    <h2 id="sec-3-cap-theorem">3. The Scaling Dilemma & The CAP Theorem</h2>
+                    <p>
+                        A single monolithic server and a single relational database are simple, concise, and easy to reason about. But what happens when our traffic grows and we need to scale? A single server can only handle so many concurrent requests before hitting CPU, memory, and disk I/O limits.
+                    </p>
+                    <p>
+                        As soon as we move beyond a single machine (whether by adding read replicas, partitioning databases, or separating write logs from read caches), we run directly into the fundamental law of distributed systems: <strong>Brewer's CAP Theorem</strong>.
+                    </p>
+
+                    <!-- CAP Theorem Full-Width Horizontal Rows -->
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin: 24px 0;">
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: baseline; gap: 14px;">
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); min-width: 190px; flex-shrink: 0;">Consistency (C)</span>
+                            <span style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;"><strong style="color: var(--text-primary);">Every read receives the latest write (or fails).</strong> All clients see the exact same data at the same moment.</span>
+                        </div>
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: baseline; gap: 14px;">
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple); min-width: 190px; flex-shrink: 0;">Availability (A)</span>
+                            <span style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;"><strong style="color: var(--text-primary);">Every non-failing node returns a valid response.</strong> The system never crashes or errors out, even if the data returned is slightly stale.</span>
+                        </div>
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: baseline; gap: 14px;">
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--accent-blue); min-width: 190px; flex-shrink: 0;">Partition Tolerance (P)</span>
+                            <span style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;"><strong style="color: var(--text-primary);">The system survives network breaks.</strong> It continues to operate even when communication links between servers drop, lag, or fail.</span>
+                        </div>
+                    </div>
+
+                    <div class="callout">
+                        <div class="callout-title">⚖️ The CAP Trade-Off: You Must Choose Between CP and AP</div>
+                        <p>
+                            In the real physical world, <strong>Network Partitions (P) are unavoidable</strong>: cables get cut, switches drop packets, and garbage collection pauses mimic network failures. You cannot "choose" CA.
+                        </p>
+                        <p>
+                            Therefore, whenever a network partition occurs, you must make an architectural choice:
+                        </p>
+                        <ul>
+                            <li><strong>CP (Consistency + Partition Tolerance):</strong> If nodes cannot communicate to verify the latest state, the system rejects or delays the request to avoid returning corrupted or stale data (prioritizing safety over availability).</li>
+                            <li><strong>AP (Availability + Partition Tolerance):</strong> The system responds immediately with whatever local state it has, accepting that data might be temporarily out-of-sync (Eventual Consistency).</li>
+                        </ul>
+                    </div>
+
+                    <h2 id="sec-4-master-slave">4. Scaling Stage 1: Primary-Replica (Master-Slave) Architecture</h2>
+                    
+                    <div class="callout" style="border-left: 4px solid var(--accent-cyan); margin: 18px 0;">
+                        <div class="callout-title">📈 When Demands Outweigh Single-Instance Capacity: The Read Explosion</div>
+                        <p>
+                            Imagine our application traffic surges: instead of a few queries a second, <strong>25,000 active users are concurrently refreshing order pages, tracking shipments, and checking purchase histories</strong>. 
+                        </p>
+                        <p>
+                            Even though actual order writes (creations/payments) remain moderate, the massive flood of read queries exhausts the database connection pool, pegs CPU cores at 100%, and starves disk I/O. Both reads and writes begin timing out.
+                        </p>
+                    </div>
+
+                    <p>
+                        In web applications, <strong>reads typically outnumber writes by 10:1 or more</strong>. We solve this first scaling bottleneck by separating reads from writes using a <strong>Primary-Replica (Master-Slave)</strong> architecture:
+                    </p>
+                    <ul>
+                        <li><strong>Writes go strictly to Master (Primary):</strong> All <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> operations are sent exclusively to a single Master node.</li>
+                        <li><strong>Reads go to Slaves (Replicas):</strong> All <code>SELECT</code> queries are distributed and load-balanced across multiple Read-Only Slave nodes.</li>
+                        <li><strong>Replication Stream:</strong> The Master continuously streams its write log (binary log / WAL) to keep all Slaves up to date.</li>
+                    </ul>
+
+                    <!-- Figure 3: Master-Slave Vector System Diagram -->
+                    <div class="diagram-wrapper" style="margin: 28px 0; background: var(--diagram-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px 16px; display: flex; flex-direction: column; align-items: center;">
+                        <svg viewBox="0 0 780 280" width="100%" height="100%" style="max-width: 780px; font-family: 'Inter', system-ui, sans-serif;">
+                            <defs>
+                                <linearGradient id="msClientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e293b" />
+                                    <stop offset="100%" stop-color="#0f172a" />
+                                </linearGradient>
+                                <linearGradient id="msServerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e3a8a" />
+                                    <stop offset="100%" stop-color="#172554" />
+                                </linearGradient>
+                                <linearGradient id="msMasterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#064e3b" />
+                                    <stop offset="100%" stop-color="#022c22" />
+                                </linearGradient>
+                                <linearGradient id="msSlaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0c4a6e" />
+                                    <stop offset="100%" stop-color="#082f49" />
+                                </linearGradient>
+                                <marker id="msArrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 1, 8 4, 0 7" fill="#38bdf8" />
+                                </marker>
+                                <marker id="msArrowEmerald" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 1, 8 4, 0 7" fill="#10b981" />
+                                </marker>
+                                <marker id="msArrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 1, 8 4, 0 7" fill="#f59e0b" />
+                                </marker>
+                            </defs>
+
+                            <!-- Node 1: Clients -->
+                            <rect x="20" y="80" width="160" height="120" rx="12" fill="url(#msClientGrad)" stroke="#38bdf8" stroke-width="2" />
+                            <text x="100" y="112" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">📱 Clients</text>
+                            <rect x="35" y="128" width="130" height="24" rx="6" fill="#1e293b" />
+                            <text x="100" y="144" text-anchor="middle" fill="#10b981" font-size="11" font-family="'JetBrains Mono', monospace">POST (Writes)</text>
+                            <rect x="35" y="158" width="130" height="24" rx="6" fill="#1e293b" />
+                            <text x="100" y="174" text-anchor="middle" fill="#38bdf8" font-size="11" font-family="'JetBrains Mono', monospace">GET (Reads)</text>
+
+                            <!-- Arrow: Clients to App Server -->
+                            <path d="M 180 140 L 240 140" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#msArrowCyan)" />
+                            <text x="210" y="132" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="600">REST</text>
+
+                            <!-- Node 2: App Server / Connection Router -->
+                            <rect x="250" y="70" width="200" height="140" rx="12" fill="url(#msServerGrad)" stroke="#60a5fa" stroke-width="2" />
+                            <text x="350" y="98" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">⚙️ App / Query Router</text>
+                            
+                            <rect x="265" y="114" width="170" height="34" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1" />
+                            <text x="350" y="135" text-anchor="middle" fill="#a7f3d0" font-size="11" font-weight="600">Write Router ➔ Master</text>
+                            
+                            <rect x="265" y="156" width="170" height="34" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+                            <text x="350" y="177" text-anchor="middle" fill="#bae6fd" font-size="11" font-weight="600">Read Router ➔ Slaves</text>
+
+                            <!-- Arrow: Server to Master (Writes) -->
+                            <path d="M 450 125 C 480 125, 480 65, 520 65" stroke="#10b981" stroke-width="2.5" fill="none" marker-end="url(#msArrowEmerald)" />
+                            <text x="485" y="80" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">Writes Only</text>
+
+                            <!-- Arrow: Server to Slaves (Reads) -->
+                            <path d="M 450 175 C 480 175, 480 215, 520 215" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#msArrowCyan)" />
+                            <text x="485" y="210" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">Load-Balanced Reads</text>
+
+                            <!-- Node 3: Master Database (Top Right) -->
+                            <rect x="530" y="20" width="230" height="95" rx="12" fill="url(#msMasterGrad)" stroke="#10b981" stroke-width="2" />
+                            <text x="645" y="48" text-anchor="middle" fill="#34d399" font-size="13" font-weight="700">🗄️ Master (Primary DB)</text>
+                            <rect x="545" y="60" width="200" height="24" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+                            <text x="645" y="76" text-anchor="middle" fill="#d1fae5" font-size="11" font-family="'JetBrains Mono', monospace">INSERT / UPDATE / DELETE</text>
+                            <text x="645" y="102" text-anchor="middle" fill="#6ee7b7" font-size="10">Single Source of Write Truth</text>
+
+                            <!-- Replication Arrow from Master to Slaves -->
+                            <path d="M 645 115 L 645 155" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4" fill="none" marker-end="url(#msArrowAmber)" />
+                            <text x="655" y="140" text-anchor="start" fill="#fcd34d" font-size="10" font-weight="600">Replication Stream (WAL)</text>
+
+                            <!-- Node 4: Slave Replicas (Bottom Right) -->
+                            <rect x="530" y="165" width="230" height="95" rx="12" fill="url(#msSlaveGrad)" stroke="#38bdf8" stroke-width="2" />
+                            <text x="645" y="192" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">📚 Slave Replicas (Read-Only)</text>
+                            <rect x="545" y="204" width="200" height="24" rx="6" fill="#082f49" stroke="#38bdf8" stroke-width="1" />
+                            <text x="645" y="220" text-anchor="middle" fill="#e0f2fe" font-size="11" font-family="'JetBrains Mono', monospace">SELECT queries (N nodes)</text>
+                            <text x="645" y="246" text-anchor="middle" fill="#7dd3fc" font-size="10">Scales Read Throughput</text>
+                        </svg>
+                        <span style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">Figure 3: Primary-Replica (Master-Slave) Architecture Separating Read and Write Paths</span>
+                    </div>
+
+                    <h3>The Replication Trade-Off: Synchronous vs. Asynchronous</h3>
+                    <p>
+                        How and when data propagates from Master to Slaves creates a direct application of the CAP theorem:
+                    </p>
+
+                    <!-- Synchronous vs Asynchronous Comparison Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0;">
+                        <!-- Synchronous -->
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 10px;">Option A: Synchronous Writes</div>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">Master waits for all Slaves to acknowledge the write before committing and replying <code>200 OK</code> to the client.</p>
+                            <div style="font-size: 0.88rem; margin-bottom: 6px;"><strong style="color: var(--accent-emerald);">Good:</strong> Better consistency across all nodes; zero data loss if Master fails.</div>
+                            <div style="font-size: 0.88rem; margin-bottom: 8px;"><strong style="color: var(--accent-rose);">Bad:</strong> High write latency (waits on slowest Slave); writes stall completely if one Slave hangs.</div>
+                            <div style="font-size: 0.82rem; color: var(--accent-amber); font-style: italic; line-height: 1.4;">* <strong>Physical World Catch:</strong> While consistency is much better, writes to multiple slaves never land at the exact same physical millisecond. Reads hitting different slaves during the write window can still briefly return out-of-sync data.</div>
+                        </div>
+
+                        <!-- Asynchronous -->
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 10px;">Option B: Asynchronous Writes (Standard)</div>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">Master commits immediately and replies to client. Replicas receive updates in the background.</p>
+                            <div style="font-size: 0.88rem; margin-bottom: 6px;"><strong style="color: var(--accent-emerald);">Good:</strong> Maximum write throughput; ultra-low write latency.</div>
+                            <div style="font-size: 0.88rem;"><strong style="color: var(--accent-rose);">Bad:</strong> <strong>Replication Lag:</strong> Reads hitting Slaves will temporarily see stale data; failover risks losing un-replicated writes.</div>
+                        </div>
+                    </div>
+
+                    <h2 id="sec-5-event-sourcing">5. Architectural Evolution: Why CQRS & Event Sourcing Change Everything</h2>
+                    
+                    <div class="callout" style="border-left: 4px solid var(--accent-purple); margin: 18px 0;">
+                        <div class="callout-title">💥 The Breaking Point of Master-Slave: When Writes Explode</div>
+                        <p>
+                            While Master-Slave successfully scales reads, it has a fatal architectural limitation: <strong>all writes are still forced through a single Master node</strong>.
+                        </p>
+                        <p>
+                            Two real-world situations inevitably break this architecture:
+                        </p>
+                        <ul>
+                            <li><strong>1. High-Volume Write Surges (Flash Sales / Black Friday / IoT):</strong> When 20,000 users click "Buy Now" simultaneously, every write hits the single Master. Relational writes perform heavy <em>random disk I/O</em> (updating table pages, updating B-Tree indexes, acquiring row locks, and flushing undo logs). The Master's disk IOPS saturates and write transactions grind to a halt.</li>
+                            <li><strong>2. Microservices & Sharding Break Single-DB ACID:</strong> When data grows so large that we shard across multiple databases or split into microservices (<code>OrderService</code>, <code>PaymentService</code>, <code>InventoryService</code>), we can no longer run a single multi-table ACID transaction. Distributed Two-Phase Commits (2PC) introduce massive network latency and fail completely when any node is unreachable (CAP theorem).</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        This is the exact threshold where we move to <strong>CQRS (Command Query Responsibility Segregation)</strong> and <strong>Event Sourcing</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>Command (Write) Side:</strong> Writes bypass heavy relational index rewrites and table locks. Instead, they are appended as lightweight, immutable events to a sequential <strong>Write-Ahead Log (WAL)</strong> at tens of thousands of writes per second.</li>
+                        <li><strong>Query (Read) Side:</strong> Independent read projections consume the event log asynchronously to build fast, denormalized read views tailored specifically for UI queries with zero lock contention on the write path.</li>
+                    </ul>
+
+                    <!-- Expandable Operational Disaster -->
+                    <details class="expandable-option danger" style="margin: 20px 0;">
+                        <summary style="font-size: 15px; padding: 14px 18px; font-weight: 600;">
+                            <span>💥 Operational Disaster: The "Accounting Incident" (Mutable Overwrite Nightmare)</span>
+                        </summary>
+                        <div class="option-content" style="padding: 10px 20px 20px 20px;">
+                            <p>
+                                Beyond write throughput, mutable databases create severe operational risks. Imagine a bad actor (or a buggy script) in Accounting runs an unauthorized SQL script that overwrites prices across 5,000 orders in our database:
+                            </p>
+                            <ul>
+                                <li><strong>Destructive Overwrites:</strong> The previous prices were permanently erased the moment the <code>UPDATE</code> executed. The database only knows the corrupted data in front of it.</li>
+                                <li><strong>The Painful Rollback:</strong> We might have a database backup from 2 hours ago. But restoring that backup rolls back <em>everything</em>, destroying legitimate orders, customer sign-ups, and payments that occurred over the last 2 hours.</li>
+                                <li><strong>Manual Triage:</strong> Engineering is forced to dig through cryptic, unstructured server logs, guess which changes were missed, manually reconcile balances, and notify customers that account data was stale or corrupted.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Expandable Real-World Banking Aside -->
+                    <details class="expandable-option" style="margin: 20px 0;">
+                        <summary style="font-size: 15px; padding: 14px 18px; color: var(--accent-cyan); font-weight: 600;">
+                            <span>🏦 Real-World Aside: How Traditional Banks Avoid This on ACID DBs</span>
+                        </summary>
+                        <div class="option-content" style="padding: 10px 20px 20px 20px;">
+                            <p>
+                                Ever wonder how traditional banks avoid this disaster while still using classic ACID relational databases?
+                            </p>
+                            <p>
+                                <strong>Banks turn their ACID database into an append-only ledger.</strong> They primarily only ever perform <code>INSERT</code> statements. They almost never issue <code>UPDATE</code> or <code>DELETE</code> statements on ledger tables.
+                            </p>
+                            <p>
+                                If you deposit $100, they <code>INSERT</code> a deposit record. If a teller makes a mistake and deposits $1,000 instead of $100, the bank does <em>not</em> overwrite the existing row. Instead, they <code>INSERT</code> a compensatory adjustment record (e.g. <code>-$900 Reversal</code>).
+                            </p>
+                            <p>
+                                Your current account balance is never a raw mutable cell in a row; it is computed by folding over all historical append-only entries:
+                            </p>
+                            <pre><code>Current Balance = SUM(Credit Entries) - SUM(Debit Entries)</code></pre>
+                        </div>
+                    </details>
+
+                    <h3>The Paradigm Shift: From Mutable Rows to Immutable Events</h3>
+                    <p>
+                        What if, instead of mutating a single row over and over and praying that state never gets corrupted, <strong>every change is treated as an immutable "Event"</strong>?
+                    </p>
+                    <ul>
+                        <li><code>OrderCreated(id=123, price=$100, timestamp=10:00)</code></li>
+                        <li><code>PriceAdjusted(id=123, new_price=$120, user="accounting_bob", timestamp=10:05)</code></li>
+                        <li><code>RefundIssued(id=123, amount=$100, timestamp=10:06)</code></li>
+                    </ul>
+
+                    <p>
+                        By modeling our system around an append-only sequence of events, we unlock massive architectural superpowers:
+                    </p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Superpower</th>
+                                    <th>What It Gives Us</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Complete First-Class Audit Trail</strong></td>
+                                    <td>We maintain a full, tamper-evident history of what operations happened, when, and by whom (without digging through messy binary logs).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Deterministic State Rebuilding</strong></td>
+                                    <td>Because current state is simply a projection calculated from past events, we can replay events up to any timestamp, isolate bad events, and rebuild the exact system state deterministically.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Event Listeners & Decoupled Pub/Sub</strong></td>
+                                    <td>We can push events to different listeners across our ecosystem: one listener sends customer confirmation emails, another notifies shipping, and another updates search indexes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Cheap Long-Term Storage</strong></td>
+                                    <td>Append-only logs can be streamed and archived to cheap cold storage (like S3 or GCS) indefinitely, ensuring we always know the absolute history of how we arrived at our current state.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>The Order API WAL Architecture</h3>
+                    <p>
+                        As implemented in the <a href="https://github.com/anpaulin/order-api" target="_blank" style="color: var(--accent-cyan);">order-api microservice</a>, write requests append to a high-throughput <strong>Write-Ahead Log (WAL)</strong> before projecting into an in-memory cache for zero-latency queries:
+                    </p>
+
+                    <pre><code>                               ┌────────────────────────┐
+                                │  REST Request (POST)   │
+                                └───────────┬────────────┘
+                                            │
+                                            ▼
+                                ┌────────────────────────┐
+                                │  Write-Ahead Log (WAL) │  ◄── Append-Only File / Kafka
+                                │   (Persistent Event)   │
+                                └───────────┬────────────┘
+                                            │ (On Successful Append)
+                                            ▼
+                                ┌────────────────────────┐
+                                │ In-Memory State Cache  │  ◄── Zero-latency reads
+                                │  (ConcurrentHashMap)   │
+                                └────────────────────────┘</code></pre>
+
+                    <div class="callout">
+                        <div class="callout-title">💡 Why Write-Ahead Logging?</div>
+                        <p><strong>Zero State Drift:</strong> State projections are never updated in memory until the event is safely committed to the append-only log. If the server crashes or the disk fills up, the in-memory cache remains consistent upon replay on startup.</p>
+                        <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--callout-border);">
+                            * <strong>The Atomicity Rule:</strong> Appending to the WAL audit log and updating the in-memory state <em>must</em> happen synchronously and atomically per entity (they either both happen or neither does). If an in-flight gap allows concurrent requests to interleave between appending to the log and updating memory, the system will read stale state, record duplicate or conflicting events in the log, and cause memory-disk drift.<br><br>
+                            <strong>Why this still easily beats a classic RDBMS:</strong> Even with synchronous ordering enforced, our operations remain lightning fast. Appending sequentially to the end of a file bypasses heavy B-tree index traversals, random disk I/O, and table-lock contention, while updating a RAM data structure takes nanoseconds.
+                        </p>
+                    </div>
+
+                    <h2 id="sec-6-performance">6. Overcoming Performance Hurdles (The 250 req/s Ceiling)</h2>
+                    <p>
+                        Implementing strict synchronous persistence on each request introduces OS-level bottlenecks. In <code>order-api</code>, the performance evolution followed distinct phases:
+                    </p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Phase & Bottleneck</th>
+                                    <th>Root Cause</th>
+                                    <th>Architectural Remedy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Netty Thread Starvation</strong></td>
+                                    <td>Blocking file I/O executed on Play's default CPU execution context.</td>
+                                    <td>Isolated dedicated <code>BlockingIoExecutionContext</code> (16-thread fixed pool) preventing worker starvation.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. File Descriptor Churn</strong></td>
+                                    <td>Opening, writing, and closing <code>BufferedWriter</code> on every HTTP call (2-5ms penalty).</td>
+                                    <td>Persistent long-lived UTF-8 writer with graceful lifecycle shutdown hooks.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. 250 req/s Disk Sync Ceiling</strong></td>
+                                    <td>Per-request <code>writer.flush()</code> serialized by disk I/O head mechanics.</td>
+                                    <td><strong>Group Commit</strong>: Batching concurrent in-flight writes into synchronized disk flushes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Startup Memory OOM</strong></td>
+                                    <td>Loading millions of past events into memory all at once during replay.</td>
+                                    <td>Zero-allocation streaming replay directly from the event log.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 id="sec-7-summary">7. Summary Architecture Rules</h2>
+                    <ul>
+                        <li><strong>Idempotency First:</strong> Never expose mutable POST/PATCH endpoints without deterministic client idempotency keys.</li>
+                        <li><strong>Decouple I/O from Compute:</strong> Keep reactive/Netty event loops strictly non-blocking; isolate storage writes to dedicated thread pools.</li>
+                        <li><strong>Append-Only Invariance:</strong> Treat state as a function of historical events: <code>State = Fold(Events, InitialState)</code>.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Ariel Paulin • Built with performant web primitives • Systems & Software Engineering</p>
+</footer>
 
 <script>
-// --- Web Audio API Synth ---
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-let audioCtx = null;
-
-function initAudio() {
-    if (!audioCtx) audioCtx = new AudioContext();
+// --- Theme Switcher (Light / Dark Mode) ---
+function getPreferredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return 'light'; // Default to light mode
 }
 
-function playPew() {
-    if (!audioCtx) return;
-    try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.12);
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.12);
-    } catch (e) {}
-}
-
-function playExplosion() {
-    if (!audioCtx) return;
-    try {
-        const bufferSize = audioCtx.sampleRate * 0.2;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = Math.random() * 2 - 1;
-        }
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
-        filter.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.2);
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-        noise.start();
-        noise.stop(audioCtx.currentTime + 0.2);
-    } catch (e) {}
-}
-
-function playPowerUp() {
-    if (!audioCtx) return;
-    try {
-        const now = audioCtx.currentTime;
-        const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
-        notes.forEach((freq, idx) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.05);
-            gain.gain.setValueAtTime(0.2, now + idx * 0.05);
-            gain.gain.linearRampToValueAtTime(0.01, now + (idx + 1) * 0.05);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start(now + idx * 0.05);
-            osc.stop(now + (idx + 1) * 0.05);
-        });
-    } catch (e) {}
-}
-
-function playGameOverSound() {
-    if (!audioCtx) return;
-    try {
-        const now = audioCtx.currentTime;
-        const notes = [440, 349.23, 293.66, 220];
-        notes.forEach((freq, idx) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-            gain.gain.setValueAtTime(0.25, now + idx * 0.12);
-            gain.gain.linearRampToValueAtTime(0.01, now + (idx + 1) * 0.12);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start(now + idx * 0.12);
-            osc.stop(now + (idx + 1) * 0.12);
-        });
-    } catch (e) {}
-}
-
-// --- Konami Code Detector ---
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-let konamiIdx = 0;
-
-window.addEventListener('keydown', (e) => {
-    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    const expected = konamiCode[konamiIdx].length === 1 ? konamiCode[konamiIdx].toLowerCase() : konamiCode[konamiIdx];
-
-    if (key === expected) {
-        konamiIdx++;
-        if (konamiIdx === konamiCode.length) {
-            konamiIdx = 0;
-            startSpaceInvaders();
-        }
+function setTheme(theme) {
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        const icon = document.getElementById('theme-icon');
+        const text = document.getElementById('theme-text');
+        if (icon) icon.textContent = '☀️';
+        if (text) text.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
     } else {
-        konamiIdx = 0;
+        document.documentElement.removeAttribute('data-theme');
+        const icon = document.getElementById('theme-icon');
+        const text = document.getElementById('theme-text');
+        if (icon) icon.textContent = '🌙';
+        if (text) text.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+}
+
+// Immediately apply saved theme to avoid flash
+(function() {
+    const theme = getPreferredTheme();
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+})();
+
+// --- Tab Switching & View Routing ---
+function switchTab(tabName) {
+    document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+    if (tabName === 'resume') {
+        document.getElementById('view-resume').classList.add('active');
+        document.getElementById('tab-btn-resume').classList.add('active');
+        window.location.hash = 'resume';
+    } else if (tabName === 'articles') {
+        document.getElementById('view-articles').classList.add('active');
+        document.getElementById('tab-btn-articles').classList.add('active');
+        window.location.hash = 'articles';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openArticle(articleId) {
+    document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('tab-btn-articles').classList.add('active');
+    document.getElementById('view-reader').classList.add('active');
+    window.location.hash = 'article-' + articleId;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Check initial hash & theme on load
+window.addEventListener('DOMContentLoaded', () => {
+    // Init theme button state
+    setTheme(getPreferredTheme());
+
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'articles') {
+        switchTab('articles');
+    } else if (hash.startsWith('article-')) {
+        let articleId = hash.replace('article-', '');
+        if (articleId === 'askuity-systems-design') articleId = 'order-api-systems-design';
+        openArticle(articleId);
+    } else {
+        switchTab('resume');
+    }
+    initTocScrollSpy();
+});
+
+window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'articles') {
+        switchTab('articles');
+    } else if (hash.startsWith('article-')) {
+        let articleId = hash.replace('article-', '');
+        if (articleId === 'askuity-systems-design') articleId = 'order-api-systems-design';
+        openArticle(articleId);
+    } else if (hash === 'resume' || !hash) {
+        switchTab('resume');
     }
 });
 
-document.getElementById('konami-trigger').addEventListener('click', () => {
-    startSpaceInvaders();
-});
+// --- Table of Contents Active Scroll Spy ---
+function initTocScrollSpy() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = Array.from(document.querySelectorAll('#article-order-api-systems-design [id]')).filter(el => 
+        el.tagName === 'H2' || el.tagName === 'DETAILS' || el.id.startsWith('sec-')
+    );
 
-// --- Space Invaders Engine ---
-const TECH_STACK = [
-    { name: 'Scala', color: '#DE3423' },
-    { name: 'Java', color: '#F8981D' },
-    { name: 'SQL', color: '#00758F' },
-    { name: 'Akka', color: '#15A9CE' },
-    { name: 'Spark', color: '#E25A1C' },
-    { name: 'Kafka', color: '#231F20' },
-    { name: 'Flink', color: '#E6526F' },
-    { name: 'Play', color: '#9CD719' },
-    { name: 'Spring Boot', color: '#6DB33F' },
-    { name: 'React', color: '#61DAFB' },
-    { name: 'GCP', color: '#4285F4' },
-    { name: 'Azure', color: '#0078D4' },
-    { name: 'AWS', color: '#FF9900' },
-    { name: 'Docker', color: '#2496ED' },
-    { name: 'Kubernetes', color: '#326CE5' },
-    { name: 'Terraform', color: '#844FBA' },
-    { name: 'Grafana', color: '#F46800' },
-    { name: 'Git', color: '#F05032' },
-    { name: 'Claude Code', color: '#D97706' }
-];
+    if (!sections.length || !tocLinks.length) return;
 
-let gameActive = false;
-let isGameOver = false;
-let animId = null;
-let score = 0;
-let wave = 1;
-let waveBannerTimer = 0;
+    window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 160;
 
-const overlay = document.getElementById('game-overlay');
-const canvas = document.getElementById('game-canvas');
-const ctx = canvas.getContext('2d');
-const scoreEl = document.getElementById('game-score');
-const waveEl = document.getElementById('game-wave');
-const exitBtn = document.getElementById('game-exit-btn');
-
-let player = { x: 0, y: 0, w: 40, h: 20, speed: 6, dx: 0 };
-let bullets = [];
-let invaders = [];
-let particles = [];
-let keys = {};
-let invaderDirection = 1;
-let baseInvaderSpeed = 1.0;
-let currentInvaderSpeed = 1.0;
-let totalWaveInvaders = 24;
-let lastShot = 0;
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    player.y = canvas.height - 60;
-    if (player.x === 0) player.x = canvas.width / 2 - player.w / 2;
-}
-
-function startSpaceInvaders() {
-    initAudio();
-    playPowerUp();
-    gameActive = true;
-    isGameOver = false;
-    overlay.style.display = 'block';
-    resizeCanvas();
-    score = 0;
-    wave = 1;
-    scoreEl.textContent = score;
-    waveEl.textContent = wave;
-    spawnInvaders();
-    player.x = canvas.width / 2 - player.w / 2;
-    bullets = [];
-    particles = [];
-
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('keydown', handleGameKeyDown);
-    window.addEventListener('keyup', handleGameKeyUp);
-
-    if (animId) cancelAnimationFrame(animId);
-    gameLoop();
-}
-
-function restartGame() {
-    isGameOver = false;
-    score = 0;
-    wave = 1;
-    scoreEl.textContent = score;
-    waveEl.textContent = wave;
-    player.x = canvas.width / 2 - player.w / 2;
-    bullets = [];
-    particles = [];
-    spawnInvaders();
-    playPowerUp();
-}
-
-function triggerGameOver() {
-    if (isGameOver) return;
-    isGameOver = true;
-    playGameOverSound();
-    createExplosion(player.x + player.w / 2, player.y + player.h / 2, '#00ffcc');
-}
-
-function stopSpaceInvaders() {
-    gameActive = false;
-    isGameOver = false;
-    overlay.style.display = 'none';
-    if (animId) cancelAnimationFrame(animId);
-    window.removeEventListener('resize', resizeCanvas);
-    window.removeEventListener('keydown', handleGameKeyDown);
-    window.removeEventListener('keyup', handleGameKeyUp);
-}
-
-exitBtn.addEventListener('click', stopSpaceInvaders);
-
-canvas.addEventListener('click', () => {
-    if (isGameOver) restartGame();
-});
-
-function handleGameKeyDown(e) {
-    if (e.key === 'Escape') stopSpaceInvaders();
-    if (isGameOver) {
-        if (e.key === 'Enter' || e.key === ' ' || e.key === 'r' || e.key === 'R') {
-            restartGame();
-        }
-        return;
-    }
-    keys[e.key] = true;
-    if (e.key === ' ' || e.key === 'ArrowUp') {
-        shootLaser();
-    }
-}
-
-function handleGameKeyUp(e) {
-    keys[e.key] = false;
-}
-
-// Mobile Button Handlers
-const mLeft = document.getElementById('m-left');
-const mRight = document.getElementById('m-right');
-const mFire = document.getElementById('m-fire');
-
-['touchstart', 'mousedown'].forEach(evt => {
-    mLeft.addEventListener(evt, (e) => {
-        e.preventDefault();
-        if (isGameOver) return;
-        keys['ArrowLeft'] = true;
-    });
-    mRight.addEventListener(evt, (e) => {
-        e.preventDefault();
-        if (isGameOver) return;
-        keys['ArrowRight'] = true;
-    });
-    mFire.addEventListener(evt, (e) => {
-        e.preventDefault();
-        if (isGameOver) {
-            restartGame();
-        } else {
-            shootLaser();
-        }
-    });
-});
-
-['touchend', 'mouseup'].forEach(evt => {
-    mLeft.addEventListener(evt, (e) => { e.preventDefault(); keys['ArrowLeft'] = false; });
-    mRight.addEventListener(evt, (e) => { e.preventDefault(); keys['ArrowRight'] = false; });
-});
-
-function spawnInvaders() {
-    invaders = [];
-    const cols = Math.min(6, Math.floor((canvas.width - 80) / 130));
-    const rows = 4;
-    totalWaveInvaders = cols * rows;
-    const startX = (canvas.width - (cols * 120)) / 2;
-    const startY = 80;
-
-    let techIdx = 0;
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            const tech = TECH_STACK[techIdx % TECH_STACK.length];
-            techIdx++;
-            invaders.push({
-                x: startX + c * 120,
-                y: startY + r * 50,
-                w: 100,
-                h: 36,
-                name: tech.name,
-                color: tech.color,
-                alive: true
-            });
-        }
-    }
-    invaderDirection = 1;
-    baseInvaderSpeed = 1.0 + (wave - 1) * 0.75;
-    currentInvaderSpeed = baseInvaderSpeed;
-    waveBannerTimer = 90;
-}
-
-function shootLaser() {
-    if (isGameOver) return;
-    const now = Date.now();
-    if (now - lastShot < 180) return;
-    lastShot = now;
-    bullets.push({
-        x: player.x + player.w / 2 - 2,
-        y: player.y,
-        w: 4,
-        h: 14,
-        speed: 10
-    });
-    playPew();
-}
-
-function createExplosion(x, y, color) {
-    for (let i = 0; i < 20; i++) {
-        particles.push({
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 10,
-            vy: (Math.random() - 0.5) * 10,
-            life: 1,
-            decay: 0.02 + Math.random() * 0.03,
-            color: color
-        });
-    }
-    playExplosion();
-}
-
-function update() {
-    if (isGameOver) {
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= p.decay;
-        });
-        particles = particles.filter(p => p.life > 0);
-        return;
-    }
-
-    // Player Movement
-    if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
-        player.x -= player.speed;
-    }
-    if (keys['ArrowRight'] || keys['d'] || keys['D']) {
-        player.x += player.speed;
-    }
-    player.x = Math.max(10, Math.min(canvas.width - player.w - 10, player.x));
-
-    // Bullets
-    bullets.forEach(b => b.y -= b.speed);
-    bullets = bullets.filter(b => b.y > -20);
-
-    // Invaders Count & Speed Calculation
-    let hitEdge = false;
-    let aliveCount = 0;
-
-    invaders.forEach(inv => {
-        if (inv.alive) aliveCount++;
-    });
-
-    const aliveRatio = totalWaveInvaders > 0 ? (aliveCount / totalWaveInvaders) : 1;
-    currentInvaderSpeed = baseInvaderSpeed * (1 + (1 - aliveRatio) * 1.2);
-
-    invaders.forEach(inv => {
-        if (!inv.alive) return;
-        inv.x += currentInvaderSpeed * invaderDirection;
-        if (inv.x <= 10 || inv.x + inv.w >= canvas.width - 10) {
-            hitEdge = true;
-        }
-
-        if (inv.y + inv.h >= player.y) {
-            triggerGameOver();
-        } else if (
-            inv.x < player.x + player.w &&
-            inv.x + inv.w > player.x &&
-            inv.y < player.y + player.h &&
-            inv.y + inv.h > player.y
-        ) {
-            triggerGameOver();
-        }
-    });
-
-    if (hitEdge) {
-        invaderDirection *= -1;
-        invaders.forEach(inv => {
-            if (inv.alive) inv.y += 18;
-        });
-    }
-
-    // Bullet & Invader Collision
-    bullets.forEach(b => {
-        invaders.forEach(inv => {
-            if (inv.alive &&
-                b.x < inv.x + inv.w &&
-                b.x + b.w > inv.x &&
-                b.y < inv.y + inv.h &&
-                b.y + b.h > inv.y) {
-
-                inv.alive = false;
-                b.y = -999;
-                score += 100 * wave;
-                scoreEl.textContent = score;
-                createExplosion(inv.x + inv.w / 2, inv.y + inv.h / 2, inv.color);
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollPosition >= sectionTop) {
+                currentSectionId = section.id;
             }
         });
-    });
 
-    // Wave Complete Check
-    if (aliveCount === 0 && !isGameOver) {
-        wave++;
-        waveEl.textContent = wave;
-        playPowerUp();
-        spawnInvaders();
-    }
-
-    // Banner Timer
-    if (waveBannerTimer > 0) {
-        waveBannerTimer--;
-    }
-
-    // Particles
-    particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= p.decay;
-    });
-    particles = particles.filter(p => p.life > 0);
-}
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Background Stars
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    for (let i = 0; i < 30; i++) {
-        const sx = (Math.sin(i * 99 + Date.now() * 0.0005) * 0.5 + 0.5) * canvas.width;
-        const sy = (Math.cos(i * 33 + Date.now() * 0.0003) * 0.5 + 0.5) * canvas.height;
-        ctx.fillRect(sx, sy, 2, 2);
-    }
-
-    // Draw Player Ship (if not game over)
-    if (!isGameOver) {
-        ctx.fillStyle = '#00ffcc';
-        ctx.shadowColor = '#00ffcc';
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.moveTo(player.x + player.w / 2, player.y);
-        ctx.lineTo(player.x + player.w, player.y + player.h);
-        ctx.lineTo(player.x, player.y + player.h);
-        ctx.closePath();
-        ctx.fill();
-        ctx.shadowBlur = 0;
-    }
-
-    // Draw Bullets
-    ctx.fillStyle = '#ff0055';
-    ctx.shadowColor = '#ff0055';
-    ctx.shadowBlur = 8;
-    bullets.forEach(b => {
-        ctx.fillRect(b.x, b.y, b.w, b.h);
-    });
-    ctx.shadowBlur = 0;
-
-    // Draw Tech Invaders
-    invaders.forEach(inv => {
-        if (!inv.alive) return;
-
-        ctx.fillStyle = '#141722';
-        ctx.strokeStyle = inv.color;
-        ctx.lineWidth = 2;
-        ctx.shadowColor = inv.color;
-        ctx.shadowBlur = 8;
-
-        ctx.beginPath();
-        ctx.roundRect(inv.x, inv.y, inv.w, inv.h, 6);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '10px "Inter", sans-serif';
-        ctx.fontWeight = '700';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(inv.name, inv.x + inv.w / 2, inv.y + inv.h / 2);
-    });
-
-    // Draw Particles
-    particles.forEach(p => {
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
-        ctx.fillRect(p.x, p.y, 4, 4);
-    });
-    ctx.globalAlpha = 1.0;
-
-    // Wave Banner Overlay
-    if (waveBannerTimer > 0 && !isGameOver) {
-        ctx.save();
-        ctx.fillStyle = '#ff0077';
-        ctx.shadowColor = '#ff0077';
-        ctx.shadowBlur = 15;
-        ctx.font = '24px "Press Start 2P", monospace';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        const alpha = Math.min(1.0, waveBannerTimer / 30);
-        ctx.globalAlpha = alpha;
-        ctx.fillText(`WAVE ${wave} SPEED UP!`, canvas.width / 2, canvas.height / 2);
-        ctx.restore();
-    }
-
-    // --- GAME OVER OVERLAY SCREEN ---
-    if (isGameOver) {
-        ctx.save();
-        ctx.fillStyle = 'rgba(9, 10, 16, 0.85)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#ff0055';
-        ctx.shadowColor = '#ff0055';
-        ctx.shadowBlur = 20;
-        ctx.font = '32px "Press Start 2P", monospace';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 60);
-
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '14px "Press Start 2P", monospace';
-        ctx.fillText(`FINAL SCORE: ${score}`, canvas.width / 2, canvas.height / 2);
-        ctx.fillText(`WAVE REACHED: ${wave}`, canvas.width / 2, canvas.height / 2 + 30);
-
-        const pulse = Math.sin(Date.now() * 0.005) * 0.3 + 0.7;
-        ctx.fillStyle = `rgba(0, 255, 204, ${pulse})`;
-        ctx.shadowColor = '#00ffcc';
-        ctx.shadowBlur = 10;
-        ctx.font = '13px "Press Start 2P", monospace';
-        ctx.fillText('PRESS SPACE OR CLICK TO RESTART', canvas.width / 2, canvas.height / 2 + 90);
-
-        ctx.restore();
-    }
-}
-
-function gameLoop() {
-    if (!gameActive) return;
-    update();
-    draw();
-    animId = requestAnimationFrame(gameLoop);
+        if (currentSectionId) {
+            tocLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+    }, { passive: true });
 }
 </script>
 

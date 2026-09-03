@@ -1,0 +1,62 @@
+Hey Job,
+
+Thank you for following up with me regarding this position, please find my answers to your questions below:
+
+• What's the most complex system you've worked on or designed?
+	⁃ At CNH Industrial, I worked on the Geospatial Service (GSS) backend responsible for ingesting, processing, enriching, and serving real-time telemetry data from connected agricultural and construction equipment globally. The system processed ~2 billion telemetry data points per day. I worked with, optimized and added functionality to the distributed streaming and storage pipelines capable of handling throughput spikes, deduplication, and low-latency geospatial querying for downstream applications.
+
+• What hands-on experience do you have working on APIs and large data systems? – What have you used?
+	⁃ APIs & Protocols: Extensive experience designing, maintaining and working with high-throughput RESTful APIs, gRPC services, and event-driven architectures using Spring Boot, Akka HTTP, Play Framework, and Http4s.
+	⁃ Large Data & Streaming: Apache Kafka, Spark, Spark Streaming and Apache Flink, for real-time ingestion, stateful stream processing, and data enrichment.
+	⁃ Storage & Databases: PostgreSQL, Redis, HBase (GeoMesa), Google Spanner
+
+• How often do you work with non-technical business stakeholders?
+	⁃ In my roles as a Senior Developer and Technical Team Lead, I frequently and actively collaborate with Product Managers, and operational leadership to translate high-level business requirements into architectural designs, define project roadmaps, communicate technical trade-offs, and ultimately deliver on projects.
+
+• What language have you worked in the most and how many years do you have with it?
+	⁃ Scala: 5+ years (primary focus across distributed backend and streaming systems)
+	⁃ Java: 3+ years (modern Java / JVM ecosystem)
+
+• What is your experience with secure coding practices?
+	⁃ Authentication & Authorization: Implemented enterprise token-based auth and identity management, including OAuth2, JWT, and Azure Active Directory (AAD) integration for secure database connectivity and service-to-service communication.
+	⁃ API & Data Security: Applied defense-in-depth principles across all API layers—strict input validation/sanitization and rate limiting. Handled encryption in transit (TLS/mTLS) and at rest, alongside secure secrets management via GCP & Azure.
+	⁃ Compliance & CI/CD Security: Integrated automated static analysis and vulnerability scanning (SonarQube) into CI/CD pipelines to catch CVEs early, working on mission-critical e-commerce (e.g., Walmart.ca checkout flow at Publicis Sapient) and enterprise data platforms.
+
+• How many years do you have working with Spring Framework – please include all frameworks you have hands on experience with?
+	⁃ Spring Ecosystem (2+ years): Spring, Spring Boot
+	⁃ Other Frameworks & Runtimes: Akka / Apache Pekko (Actors, Streams, HTTP), Play Framework, Cats Effect / Http4s, Node.js/Express, React.
+
+• What testing tools have you used for implementing unit tests and integration test suites?
+	⁃ Unit Testing & Mocking: JUnit, Mockito, ScalaTest
+	⁃ Integration & Contract Testing: Testcontainers (spinning up ephemeral Kafka, PostgreSQL, and Redis instances in CI)
+	⁃ Performance & Load Testing: Gatling, JMeter
+	⁃ API Testing: Postman
+
+• What are your experiences building applications using a microservices architecture? 
+	⁃ Service Decomposition & Architecture: Designed, developed, decomposed, and scaled distributed microservices across multiple enterprise organizations (CNH Industrial, A2X, AwareAds, AppDirect, Publicis Sapient), establishing clean API boundaries using REST/JSON and gRPC alongside event-driven async messaging with Kafka.
+	⁃ Fault Tolerance & Resilience: Implemented circuit breakers, retry policies with exponential backoff, dead-letter queues (DLQ)
+	⁃ Observability & Containerization: Integrated distributed tracing, metric dashboards, and alerting using Prometheus, Grafana, and GCP Cloud Monitoring. Packaged services in Docker containers managed on Kubernetes (GKE/EKS) with automated CI/CD pipelines.
+
+• What experience do you have leveraging distributed messaging systems?  
+	⁃ Apache Kafka: Extensive hands-on experience designing topic topologies, partitioning schemes for high throughput, consumer group rebalancing, offset management, and schema enforcement. Built resilient ingestion pipelines handling high-volume telemetry surges with dead-letter queue (DLQ) retry routing.
+	⁃ Stream Processing: Connected message queues with Apache Flink, Spark Streaming, and Akka Streams for real-time aggregation, event deduplication, and low-latency materialized views.
+
+Also, please confirm:
+• Are you currently on or in the process of receiving an F-1 OPT/OPT EAD/STEM OPT (Optional Practical Training) or CPT (Curricular Practical Training)?
+	⁃ No, I am not on F-1 OPT/CPT.
+
+• Are you currently working in the U.S. in non-immigrant status (e.g. H-1B, O-1, TN, or L) and/or will you need Garmin to file for an H-1B transfer (or other status transfer) or register you in the H-1B lottery to work in the U.S, legally?
+	⁃ (TN Status / Canadian Citizen): As a Canadian citizen, I am eligible to work in the U.S. under TN Status (USMCA/NAFTA) as a Software/Computer Systems Engineer, which requires a straightforward employer support letter upon offer and does not require any sponsorship process.
+
+• Are you able to commit to working on-site in the office 5 days per week? (Required with no exceptions) - required to answer 
+	⁃ Yes, I am able and willing to commit to working on-site in the office 5 days per week.
+
+• If you are not already located in the Kansas City area, this role REQUIRES being located in the area.  Are you open to relocation (required at the start of the opportunity- no exceptions)? – we do have relocation assistance packages.
+	⁃ Yes, I am fully open and ready to relocate to the Kansas City area for the start of this opportunity.
+
+Best regards,
+
+Ariel Paulin
+ariel.paulin@gmail.com
+https://www.linkedin.com/in/arielpaulin
+https://github.com/anpaulin

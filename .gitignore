@@ -5,6 +5,8 @@
 *.toc
 *.lof
 *.lot
+*.dvi
+*.synctex.gz
 
 # macOS
 .DS_Store
