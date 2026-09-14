@@ -7,7 +7,7 @@ Results-oriented Software Engineer and Team Lead with 8+ years of experience des
 EXPERIENCE
 ─────────────────────────────────────────
 
-Technical Team Lead | A2X Accounting | Toronto, Ontario (Remote)  Feb 2026 – Jul 2026
+Lead Software Engineer | A2X Accounting | Toronto, Ontario (Remote)  Feb 2026 – Jul 2026
   • Refactored legacy Java Amazon SP-API integrations on App Engine and Spanner to resolve tech debt
   • Led technical planning and roadmapping, mentoring developers on clean code and best practices
   • Hardened unstable beta features, reducing customer incident turnaround by 96%

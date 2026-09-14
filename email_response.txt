@@ -11,7 +11,7 @@ Thank you for following up with me regarding this position, please find my answe
 	⁃ Storage & Databases: PostgreSQL, Redis, HBase (GeoMesa), Google Spanner
 
 • How often do you work with non-technical business stakeholders?
-	⁃ In my roles as a Senior Developer and Technical Team Lead, I frequently and actively collaborate with Product Managers, and operational leadership to translate high-level business requirements into architectural designs, define project roadmaps, communicate technical trade-offs, and ultimately deliver on projects.
+	⁃ In my roles as a Senior Developer and Lead Software Engineer, I frequently and actively collaborate with Product Managers, and operational leadership to translate high-level business requirements into architectural designs, define project roadmaps, communicate technical trade-offs, and ultimately deliver on projects.
 
 • What language have you worked in the most and how many years do you have with it?
 	⁃ Scala: 5+ years (primary focus across distributed backend and streaming systems)

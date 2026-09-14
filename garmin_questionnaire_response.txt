@@ -27,7 +27,7 @@ TECHNICAL & EXPERIENCE QUESTIONS
     and Azure SQL.
 
 • How often do you work with non-technical business stakeholders?
-  - In my roles as a Senior Developer and Technical Team Lead, I frequently and 
+  - In my roles as a Senior Developer and Lead Software Engineer, I frequently and 
     actively collaborate with non-technical stakeholders, including Product Managers, 
     operations leads, and executive leadership. I regularly translate high-level 
     business goals into concrete technical architectures, define roadmaps, 
